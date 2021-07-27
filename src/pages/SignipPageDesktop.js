@@ -45,7 +45,7 @@ const SignupPageDesktop = () => {
 
       <div className={css(styles.flex2)}>
         <div className={css(styles.linkContainer)}>
-          <div className={css(styles.home)}>home</div>
+          <div className={css(styles.home)}>Home</div>
           <button className={css(styles.siginBtn)}>Sign In</button>
         </div>
         <img src={piggy} alt="orImg" className={css(styles.piggy)} />

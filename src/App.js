@@ -1,23 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import SignupPageDesktop from './pages/SignipPageDesktop';
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
-    
-      <BrowserRouter>
-
+    <BrowserRouter>
       <div className="App">
-
-           <Route path = "/"/>
-          <Route path = "/signup" component = {SignupPageDesktop} exact/>
-          <Route path = "/login" component = {LoginPage}/>
-      
-    </div>
-    
+        <Route path="/" />
+        <Route path="/signup" component={SignupPageDesktop} />
+        <Route path="/login" component={LoginPage} exact />
+      </div>
     </BrowserRouter>
-    
   );
 }
 
