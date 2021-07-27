@@ -22,5 +22,9 @@ module.exports = {
     quotes: ['warn', 'single'],
     semi: ['warn', 'always'],
     'prettier/prettier': 'warn',
+    'no-unused-vars': [
+      'warn',
+      {vars: 'all', args: 'after-used', ignoreRestSiblings: false},
+    ],
   },
 };
