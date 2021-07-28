@@ -27,4 +27,12 @@ module.exports = {
       {vars: 'all', args: 'after-used', ignoreRestSiblings: false},
     ],
   },
+  overrides: [
+    {
+      files: ['*-test.js', '*.spec.js'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
+    },
+  ],
 };
