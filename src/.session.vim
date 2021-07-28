@@ -8,22 +8,23 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +5 App.js
+badd +11 App.js
 badd +3 index.js
-badd +139 pages/LoginPage.js
+badd +1 pages/LoginPage.js
 badd +1 components/Utility.js
 badd +10 index.css
+badd +4 tests/LoginPage.test.js
 argglobal
 %argdel
-edit pages/LoginPage.js
+edit tests/LoginPage.test.js
 argglobal
-balt index.css
-let s:l = 25 - ((24 * winheight(0) + 22) / 44)
+balt App.js
+let s:l = 4 - ((3 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 25
-normal! 019|
+keepjumps 4
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -36,7 +37,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
