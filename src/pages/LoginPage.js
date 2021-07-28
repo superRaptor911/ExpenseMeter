@@ -71,7 +71,7 @@ const LoginPage = () => {
 
           <button className={css(styles.loginButton)}>Sign in</button>
           <div className={css(styles.signupText)}>
-            <span>Don't have an account? </span>
+            <span>{'Don\'t have an account?'} </span>
             <span style={{color: '#EF6B67'}}>sign up</span>
           </div>
         </div>
