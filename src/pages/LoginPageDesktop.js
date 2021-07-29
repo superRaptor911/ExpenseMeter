@@ -71,7 +71,7 @@ const LoginPageDesktop = () => {
 
           <button className={css(styles.loginButton)}>Sign in</button>
           <div className={css(styles.signupText)}>
-            <span>{'Don\'t have an account?'} </span>
+            <span>{"Don't have an account?"} </span>
             <span style={{color: '#EF6B67'}}>sign up</span>
           </div>
         </div>
@@ -87,12 +87,13 @@ const styles = StyleSheet.create({
   },
   signupText: {
     textAlign: 'center',
-    marginTop: 125,
+    marginTop: 100,
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
     color: '#5E5E5E',
+    width: 371,
   },
   welcomeB: {
     position: 'absolute',
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins',
     fontWeight: '600',
     fontSize: '14px',
+    width: 371,
   },
 
   rememberMe: {
@@ -190,7 +192,7 @@ const styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 14,
     display: 'flex',
-    width: '100%',
+    width: '371px',
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -215,6 +217,7 @@ const styles = StyleSheet.create({
   },
   orImageCenter: {
     textAlign: 'center',
+    width: 371,
   },
   orIcon: {
     marginTop: 30,
@@ -230,7 +233,7 @@ const styles = StyleSheet.create({
     lineHeight: '22px',
     letterSpacing: '0.01em',
     color: 'white',
-    width: '100%',
+    width: 371,
     textAlign: 'center',
     padding: 12,
     marginTop: 30,
@@ -243,6 +246,7 @@ const styles = StyleSheet.create({
     lineHeight: '122%',
     textTransform: 'capitalize',
     color: '#3D3B59',
+    width: 371,
   },
   linkContainer: {
     display: 'flex',
@@ -252,7 +256,8 @@ const styles = StyleSheet.create({
     width: 'max-content',
     alignItems: 'center',
     position: 'absolute',
-    left: '83.3%',
+    //left: '83.3%',
+    right: '50px',
   },
   home: {
     fontFamily: 'Poppins',
