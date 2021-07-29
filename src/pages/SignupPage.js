@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getDeviceDimention} from '../components/Utility';
-import LoginPageDesktop from './LoginPageDesktop';
+import SignupPageDesktop from './SignipPageDesktop';
 
-const LoginPage = ({forceWidth = 0}) => {
+const SignupPage = ({forceWidth = 0}) => {
   const width = forceWidth > 0 ? forceWidth : getDeviceDimention().width;
-  return width > 1280 ? <LoginPageDesktop /> : <div>Mobile View</div>;
+
+  return width > 1280 ? <SignupPageDesktop /> : <div>Mobile View</div>;
 };
 
-LoginPage.propTypes = {
+SignupPage.propTypes = {
   forceWidth: PropTypes.number,
 };
 
-export default LoginPage;
+export default SignupPage;

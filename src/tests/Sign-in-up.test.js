@@ -3,12 +3,13 @@ import '@testing-library/jest-dom/extend-expect';
 import {StyleSheetTestUtils} from 'aphrodite';
 
 import LoginPage from '../pages/LoginPage';
-import SignupPageDesktop from '../pages/SignipPageDesktop';
+import SignupPage from '../pages/SignupPage';
+
 // Important for Aphrodite
 StyleSheetTestUtils.suppressStyleInjection();
 
-test('Login Render test', () => {
-  render(<LoginPage />);
+test('Login Render test for Desktop', () => {
+  render(<LoginPage forceWidth={1920} />);
 
   // We are expecting these to be in DOM
   const elements = [
@@ -24,8 +25,8 @@ test('Login Render test', () => {
   }
 });
 
-test('signup Render test', () => {
-  render(<SignupPageDesktop />);
+test('signup Render test for Desktop', () => {
+  render(<SignupPage forceWidth={1920} />);
 
   // We are expecting these to be in DOM
   const elements = [
