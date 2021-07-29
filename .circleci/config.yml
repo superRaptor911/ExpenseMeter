@@ -9,6 +9,7 @@ workflows:
     jobs:
       - node/test:
           version: '15.1'
+          filters:
             branches:
               only: main
           # This is the node version to use for the `cimg/node` tag
