@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import titleImg from '../media/images/loginTitle.png';
 import orImg from '../media/images/orField.png';
@@ -6,6 +6,10 @@ import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 
 const SignupPageDesktop = () => {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [password2, setPassword2] = useState();
+
   return (
     <div className={css(styles.root)}>
       <div className={css(styles.flex1)}>

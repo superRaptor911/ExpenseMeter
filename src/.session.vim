@@ -13,10 +13,20 @@ badd +3 index.js
 badd +1 pages/LoginPage.js
 badd +1 components/Utility.js
 badd +10 index.css
+badd +9 pages/SignupPage.js
+badd +95 pages/SignipPageDesktop.js
+badd +12 shared/FirebaseInit.js
+badd +6 shared/FirebaseConfig.js
 argglobal
 %argdel
+edit shared/FirebaseInit.js
 argglobal
-enew
+let s:l = 8 - ((7 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 8
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
