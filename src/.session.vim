@@ -13,18 +13,10 @@ badd +3 index.js
 badd +1 pages/LoginPage.js
 badd +1 components/Utility.js
 badd +10 index.css
-badd +4 tests/LoginPage.test.js
 argglobal
 %argdel
-edit tests/LoginPage.test.js
 argglobal
-balt App.js
-let s:l = 4 - ((3 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 4
-normal! 0
+enew
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
