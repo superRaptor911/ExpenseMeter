@@ -28,7 +28,7 @@ Input.propTypes = {
         PropTypes.element,
       ]),
     ),
-  ]).isRequired,
+  ]),
   value: PropTypes.string,
   type: PropTypes.string,
   placeholder: PropTypes.string,
