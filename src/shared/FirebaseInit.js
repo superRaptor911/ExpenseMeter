@@ -9,4 +9,4 @@ import FirebaseConfig from './FirebaseConfig';
 firebase.initializeApp(FirebaseConfig);
 firebase.analytics();
 
-export {firebase as myFirebase};
+export {firebase as firebaseApp};

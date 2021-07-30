@@ -1,12 +1,16 @@
+// Sigup Page for Desktop
+//
 import React, {useState} from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import titleImg from '../media/images/loginTitle.png';
 import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
+import Input from '../components/Input';
 
 const SignupPageDesktop = () => {
   const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [password2, setPassword2] = useState();
 
@@ -23,25 +27,37 @@ const SignupPageDesktop = () => {
           </div>
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
 
-          <input
+          <Input
             type="text"
             placeholder="Name:"
-            className={css(styles.fields)}></input>
+            value={username}
+            setValue={setUsername}
+            className={css(styles.fields)}
+          />
 
-          <input
+          <Input
             type="text"
             placeholder="Email:"
-            className={css(styles.fields)}></input>
+            className={css(styles.fields)}
+            value={email}
+            setValue={setEmail}
+          />
 
-          <input
+          <Input
             type="password"
             placeholder="Password:"
-            className={css(styles.fields)}></input>
+            value={password}
+            setValue={setPassword}
+            className={css(styles.fields)}
+          />
 
-          <input
+          <Input
             type="password"
             placeholder="Confirm Password:"
-            className={css(styles.fields)}></input>
+            value={password2}
+            setValue={setPassword2}
+            className={css(styles.fields)}
+          />
 
           <button className={css(styles.signUpButton)}>Sign Up</button>
         </div>
