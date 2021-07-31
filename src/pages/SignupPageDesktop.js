@@ -7,12 +7,18 @@ import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
+import {createUser} from '../shared/CreateUserWithEmail';
 
 const SignupPageDesktop = () => {
-  const [username, setUsername] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [password2, setPassword2] = useState();
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+
+  const handleSignupPress = () => {
+    console.log('Signing New User : ', username);
+    createUser(email, password);
+  };
 
   return (
     <div className={css(styles.root)}>
@@ -59,7 +65,11 @@ const SignupPageDesktop = () => {
             className={css(styles.fields)}
           />
 
-          <button className={css(styles.signUpButton)}>Sign Up</button>
+          <button
+            className={css(styles.signUpButton)}
+            onClick={handleSignupPress}>
+            Sign Up
+          </button>
         </div>
       </div>
 

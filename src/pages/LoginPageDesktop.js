@@ -3,9 +3,13 @@ import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
 import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
-import React from 'react';
+import React, {useState} from 'react';
+import Input from '../components/Input';
 
 const LoginPageDesktop = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <div className={css(styles.root)}>
       <div className={css(styles.first_box)}>
@@ -44,15 +48,22 @@ const LoginPageDesktop = () => {
           <div className={css(styles.orImageCenter)}>
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
-          <input
+
+          <Input
             type="text"
             placeholder="Email:"
-            className={css(styles.fields)}></input>
+            className={css(styles.fields)}
+            value={email}
+            setValue={setEmail}
+          />
 
-          <input
+          <Input
             type="password"
             placeholder="Password:"
-            className={css(styles.fields)}></input>
+            value={password}
+            setValue={setPassword}
+            className={css(styles.fields)}
+          />
 
           <div className={css(styles.pswdSec)}>
             <div className={css(styles.rememberMe)}>
@@ -71,7 +82,7 @@ const LoginPageDesktop = () => {
 
           <button className={css(styles.loginButton)}>Sign in</button>
           <div className={css(styles.signupText)}>
-            <span>{"Don't have an account?"} </span>
+            <span>{'Don\'t have an account?'} </span>
             <span style={{color: '#EF6B67'}}>sign up</span>
           </div>
         </div>

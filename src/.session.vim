@@ -10,24 +10,26 @@ endif
 set shortmess=aoO
 badd +11 App.js
 badd +3 index.js
-badd +1 pages/LoginPage.js
+badd +7 pages/LoginPage.js
 badd +1 components/Utility.js
 badd +10 index.css
 badd +9 pages/SignupPage.js
-badd +95 pages/SignipPageDesktop.js
-badd +4 shared/FirebaseInit.js
-badd +9 shared/FirebaseConfig.js
+badd +20 pages/SignipPageDesktop.js
+badd +9 shared/FirebaseInit.js
+badd +1 shared/FirebaseConfig.js
+badd +3 shared/CreateUserWithEmail.js
+badd +31 components/Input.js
 argglobal
 %argdel
-edit pages/LoginPage.js
+edit pages/SignipPageDesktop.js
 argglobal
-balt shared/FirebaseInit.js
-let s:l = 7 - ((6 * winheight(0) + 22) / 44)
+balt shared/CreateUserWithEmail.js
+let s:l = 16 - ((15 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 7
-normal! 0
+keepjumps 16
+normal! 046|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
