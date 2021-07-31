@@ -7,7 +7,7 @@ import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
-import {createUser} from '../shared/CreateUserWithEmail';
+import {createUser} from '../shared/Authentication';
 
 const SignupPageDesktop = () => {
   const [username, setUsername] = useState('');
