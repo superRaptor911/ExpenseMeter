@@ -3,14 +3,25 @@ import {StyleSheet, css} from 'aphrodite';
 import {useState} from 'react';
 import Logo from '../media/images/loginTitle.png';
 import SignupSvg from '../media/svg_files/svgSignUp.svg';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import Input from '../components/Input';
 import googleIcon from '../media/images/googleIcon.png';
 import orImg from '../media/images/orField.png';
+import {createUser} from '../shared/Authentication';
 
 const SignupMobile = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
+  const history = useHistory();
+
+  const handleSignupPress = () => {
+    console.log('Signing New User : ', name);
+    createUser(email, password).then(() => {
+      history.push('/dashboard');
+    });
+  };
 
   return (
     <div className={css(styles.root)}>
@@ -46,7 +57,13 @@ const SignupMobile = () => {
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
         </div>
 
-        <Input type="text" placeholder="Name:" className={css(styles.fields)} />
+        <Input
+          type="text"
+          placeholder="Name:"
+          className={css(styles.fields)}
+          value={name}
+          setValue={setName}
+        />
 
         <Input
           type="text"
@@ -66,8 +83,8 @@ const SignupMobile = () => {
         <Input
           type="password"
           placeholder="Confirm Password:"
-          value={password}
-          setValue={setPassword}
+          value={password2}
+          setValue={setPassword2}
           className={css(styles.fields)}
         />
 
@@ -92,7 +109,9 @@ const SignupMobile = () => {
           {/* <div className={css(styles.fgtPassword)}>Forgot Password?</div> */}
         </div>
 
-        <button className={css(styles.loginButton)}>Sign up</button>
+        <button className={css(styles.loginButton)} onClick={handleSignupPress}>
+          Sign up
+        </button>
         <div className={css(styles.signupText)}>
           <span>{"Don't have an account?"} </span>
           <span style={{color: '#EF6B67'}}>sign up</span>
