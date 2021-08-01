@@ -16,20 +16,29 @@ const SignupPageDesktop = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignupPress = () => {
     console.log('Signing New User : ', username);
-    createUser(email, password).then(() => {
-      history.push('/dashboard');
-    });
+    createUser(email, password)
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
   };
 
   const handleGoogleSignup = () => {
     console.log('Signing New User with gmail');
-    signInwithGoogle().then(() => {
-      console.log('Signup successful with google');
-      history.push('/dashboard');
-    });
+    signInwithGoogle()
+      .then(() => {
+        console.log('Signup successful with google');
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
   };
 
   return (
@@ -44,6 +53,9 @@ const SignupPageDesktop = () => {
             <div className={css(styles.fieldText)}>Sign up with google</div>
           </button>
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
+
+          {/* Error Message Here */}
+          <div className={css(styles.errorMessage)}>{errorMessage}</div>
 
           <Input
             type="text"
@@ -100,6 +112,8 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'row',
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
   },
   flex1: {
     width: '50%',
@@ -215,6 +229,10 @@ const styles = StyleSheet.create({
     letterSpacing: '0.025em',
     color: '#FFFFFF',
     background: 'none',
+  },
+  errorMessage: {
+    color: 'red',
+    fontSize: 14,
   },
 });
 

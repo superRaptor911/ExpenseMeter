@@ -67,7 +67,7 @@ export async function signInwithGoogle() {
     const errorCode = error.code;
     const errorMessage = error.message;
     const email = error.email;
-    const credential = error.credential;
+    // const credential = error.credential;
 
     console.error(
       'Error::Authentication::Failed to auth with google signin for user',

@@ -12,11 +12,16 @@ const LoginPageDesktop = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSigninPress = () => {
-    signinUser(email, password).then(() => {
-      history.push('/dashboard');
-    });
+    signinUser(email, password)
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
   };
 
   return (
@@ -57,6 +62,9 @@ const LoginPageDesktop = () => {
           <div className={css(styles.orImageCenter)}>
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
+
+          {/* Error Message Here */}
+          <div className={css(styles.errorMessage)}>{errorMessage}</div>
 
           <Input
             type="text"
@@ -108,6 +116,8 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'row',
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
   },
   signupText: {
     textAlign: 'center',
@@ -306,6 +316,10 @@ const styles = StyleSheet.create({
     color: '#3D3B59',
     background: 'none',
     padding: '15px 50px',
+  },
+  errorMessage: {
+    color: 'red',
+    fontSize: 14,
   },
 });
 
