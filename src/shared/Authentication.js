@@ -44,7 +44,7 @@ export async function signinUser(email, password) {
     });
 }
 
-export async function setUserState(setUser) {
+export function setUserState(setUser) {
   firebaseApp.auth().onAuthStateChanged(user => {
     if (user) {
       console.log('user exists');
@@ -54,4 +54,25 @@ export async function setUserState(setUser) {
 
     setUser(user);
   });
+}
+
+export async function signInwithGoogle() {
+  const provider = new firebaseApp.auth.GoogleAuthProvider();
+  try {
+    const result = await firebaseApp.auth().signInWithPopup(provider);
+    return result;
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.email;
+    const credential = error.credential;
+
+    console.error(
+      'Error::Authentication::Failed to auth with google signin for user',
+      email,
+    );
+    console.error('Error::Authentication::', errorCode, errorMessage);
+
+    throw errorMessage;
+  }
 }
