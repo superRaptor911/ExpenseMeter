@@ -8,7 +8,7 @@ import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
 import {createUser, signInwithGoogle} from '../shared/Authentication';
-import {useHistory} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 
 const SignupPageDesktop = () => {
   const history = useHistory();
@@ -82,13 +82,24 @@ const SignupPageDesktop = () => {
             onClick={handleSignupPress}>
             Sign Up
           </button>
+
+          <div className={css(styles.signupText)}>
+            <span>{'Already have an account?'} </span>
+            <Link to="/login" className={css(styles.linkDec)}>
+              <span style={{color: '#EF6B67'}}>sign in</span>
+            </Link>
+          </div>
         </div>
       </div>
 
       <div className={css(styles.flex2)}>
         <div className={css(styles.linkContainer)}>
-          <div className={css(styles.home)}>Home</div>
-          <button className={css(styles.siginBtn)}>Sign In</button>
+          <Link className={css(styles.linkDec)} to="/dashboard">
+            <div className={css(styles.home)}>Home</div>
+          </Link>
+          <Link className={css(styles.linkDec)} to="/login">
+            <button className={css(styles.signinBtn)}>Sign In</button>
+          </Link>
         </div>
         <img src={piggy} alt="orImg" className={css(styles.piggy)} />
       </div>
@@ -109,6 +120,10 @@ const styles = StyleSheet.create({
     marginLeft: 160,
     marginTop: 100,
     maxWidth: 340,
+  },
+  linkDec: {
+    color: '#FFFFFF',
+    textDecoration: 'none',
   },
   heading: {
     fontFamily: 'Poppins',
@@ -169,6 +184,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 12,
     marginTop: 30,
+    ':hover': {
+      backgroundColor: '#000000',
+    },
   },
   flex2: {
     backgroundColor: '#3D3B59',
@@ -187,34 +205,51 @@ const styles = StyleSheet.create({
   linkContainer: {
     display: 'flex',
     marginTop: 40,
-    marginRight: 44,
+    //marginRight: 44,
     marginLeft: 'auto',
     width: 'max-content',
+    position: 'absolute',
     alignItems: 'center',
+    right: '50px',
   },
 
   home: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '18px',
+    fontSize: '19px',
     lineHeight: '27px',
     letterSpacing: '0.025em',
     color: '#FFFFFF',
     marginRight: 20,
+    cursor: 'pointer',
   },
-  siginBtn: {
+  signinBtn: {
     border: '2px solid #FFFFFF',
     boxSizing: 'border-box',
     borderRadius: '6.4px',
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '18px',
+    fontSize: '19px',
     lineHeight: '27px',
     letterSpacing: '0.025em',
     color: '#FFFFFF',
     background: 'none',
+    padding: '15px 50px',
+    cursor: 'pointer',
+  },
+  signupText: {
+    textAlign: 'center',
+    marginTop: 100,
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 16,
+    color: '#5E5E5E',
+    width: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 

@@ -43,7 +43,7 @@ const LoginPageDesktop = () => {
       </div>
       <div className={css(styles.second_box)}>
         <div className={css(styles.linkContainer)}>
-          <Link className={css(styles.loginLink)}>
+          <Link className={css(styles.loginLink)} to="/dashboard">
             <div className={css(styles.home)}>Home</div>
           </Link>
           <Link to="/signup" className={css(styles.loginLink)}>
@@ -101,7 +101,9 @@ const LoginPageDesktop = () => {
           </button>
           <div className={css(styles.signupText)}>
             <span>{"Don't have an account?"} </span>
-            <span style={{color: '#EF6B67'}}>sign up</span>
+            <Link to="/signup" className={css(styles.linkDec)}>
+              <span style={{color: '#EF6B67'}}>sign up</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -267,6 +269,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 12,
     marginTop: 30,
+    ':hover': {
+      backgroundColor: '#000000',
+    },
   },
   heading: {
     fontFamily: 'Poppins',
@@ -281,12 +286,11 @@ const styles = StyleSheet.create({
   linkContainer: {
     display: 'flex',
     marginTop: 40,
-    marginRight: 44,
+    //marginRight: 44,
     marginLeft: 'auto',
     width: 'max-content',
     alignItems: 'center',
     position: 'absolute',
-    //left: '83.3%',
     right: '50px',
   },
   home: {
@@ -298,6 +302,7 @@ const styles = StyleSheet.create({
     letterSpacing: '0.025em',
     color: '#3D3B59',
     marginRight: 20,
+    cursor: 'pointer',
   },
   signupBtn: {
     border: '2px solid #3D3B59',
@@ -316,6 +321,9 @@ const styles = StyleSheet.create({
   },
   loginLink: {
     cursor: 'pointer',
+    textDecoration: 'none',
+  },
+  linkDec: {
     textDecoration: 'none',
   },
 });

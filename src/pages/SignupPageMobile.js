@@ -113,8 +113,10 @@ const SignupMobile = () => {
           Sign up
         </button>
         <div className={css(styles.signupText)}>
-          <span>{"Don't have an account?"} </span>
-          <span style={{color: '#EF6B67'}}>sign up</span>
+          <span>{'Already have an account?'} </span>
+          <Link className={css(styles.linkDec)} to="/login">
+            <span style={{color: '#EF6B67'}}>sign in</span>
+          </Link>
         </div>
       </div>
     </div>
@@ -262,6 +264,9 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginBottom: 42,
     textAlign: 'center',
+  },
+  linkDec: {
+    textDecoration: 'none',
   },
 });
 

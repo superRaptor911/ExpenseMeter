@@ -35,8 +35,12 @@ const LoginMobile = () => {
       <div className={css(styles.inputSec)}>
         <div className={css(styles.heading)}>Log In To Your Account</div>
         <div className={css(styles.fields)}>
-          <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
-          <div className={css(styles.fieldText)}>Sign up with google</div>
+          <div className={css(styles.googleAuth)}>
+            <div>
+              <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
+            </div>
+            <div className={css(styles.fieldText)}>Sign up with google</div>
+          </div>
         </div>
         <div className={css(styles.orImageCenter)}>
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
@@ -76,7 +80,9 @@ const LoginMobile = () => {
         <button className={css(styles.loginButton)}>Sign in</button>
         <div className={css(styles.signupText)}>
           <span>{"Don't have an account?"} </span>
-          <span style={{color: '#EF6B67'}}>sign up</span>
+          <Link className={css(styles.linkDec)} to="/signup">
+            <span style={{color: '#EF6B67'}}>sign up</span>
+          </Link>
         </div>
       </div>
     </div>
@@ -144,12 +150,24 @@ const styles = StyleSheet.create({
   },
 
   icon: {
-    marginLeft: '24%',
+    //marginLeft: '24%',
     width: 20,
     height: 20,
     marginTop: 15,
     marginBottom: 15,
+    marginRight: 6,
   },
+
+  googleAuth: {
+    display: 'flex',
+    flexDirection: 'row',
+    minWidth: 150,
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  },
+
   fieldText: {
     paddingBottom: 17,
     paddingTop: 15,
@@ -202,6 +220,9 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginBottom: 42,
     textAlign: 'center',
+  },
+  linkDec: {
+    textDecoration: 'none',
   },
 });
 
