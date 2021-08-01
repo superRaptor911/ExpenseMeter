@@ -43,3 +43,15 @@ export async function signinUser(email, password) {
       throw errorMessage;
     });
 }
+
+export async function setUserState(setUser) {
+  firebaseApp.auth().onAuthStateChanged(user => {
+    if (user) {
+      console.log('user exists');
+    } else {
+      console.log('user does not exists');
+    }
+
+    setUser(user);
+  });
+}

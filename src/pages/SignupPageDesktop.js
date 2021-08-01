@@ -8,8 +8,10 @@ import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
 import {createUser} from '../shared/Authentication';
+import {useHistory} from 'react-router-dom';
 
 const SignupPageDesktop = () => {
+  const history = useHistory();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +19,9 @@ const SignupPageDesktop = () => {
 
   const handleSignupPress = () => {
     console.log('Signing New User : ', username);
-    createUser(email, password);
+    createUser(email, password).then(() => {
+      history.push('/dashboard');
+    });
   };
 
   return (

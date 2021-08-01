@@ -14,22 +14,24 @@ badd +7 pages/LoginPage.js
 badd +1 components/Utility.js
 badd +10 index.css
 badd +9 pages/SignupPage.js
-badd +22 shared/FirebaseInit.js
+badd +14 shared/FirebaseInit.js
 badd +31 components/Input.js
-badd +14 pages/SignupPageDesktop.js
+badd +35 pages/SignupPageDesktop.js
 badd +8 pages/Home.js
 badd +15 tests/Sign-in-up.test.js
-badd +45 shared/Authentication.js
+badd +47 shared/Authentication.js
+badd +7 pages/Dashboard.js
 argglobal
 %argdel
-edit shared/FirebaseInit.js
+edit pages/Dashboard.js
 argglobal
-let s:l = 22 - ((21 * winheight(0) + 22) / 44)
+balt shared/Authentication.js
+let s:l = 9 - ((8 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 22
-normal! 011|
+keepjumps 9
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
