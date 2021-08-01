@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {css, StyleSheet} from 'aphrodite';
 import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
@@ -5,7 +6,7 @@ import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
 import React, {useState} from 'react';
 import Input from '../components/Input';
-import {signinUser} from '../shared/Authentication';
+import {signinUser, signInwithGoogle} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
 
 const LoginPageDesktop = () => {
@@ -16,6 +17,16 @@ const LoginPageDesktop = () => {
 
   const handleSigninPress = () => {
     signinUser(email, password)
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    signInwithGoogle()
       .then(() => {
         history.push('/dashboard');
       })
@@ -51,14 +62,13 @@ const LoginPageDesktop = () => {
           <button className={css(styles.signupBtn)}>Sign Up</button>
         </div>
         <div className={css(styles.authTextArea)}>
-          {/* <div className={css(styles.authTextTitle)}>
-            <span>Log In To Your Account</span>
-          </div> */}
           <div className={css(styles.heading)}>Log In To Your Account</div>
-          <button className={css(styles.fields)}>
+
+          <button className={css(styles.fields)} onClick={handleGoogleSignin}>
             <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
             <div className={css(styles.fieldText)}>Sign up with google</div>
           </button>
+
           <div className={css(styles.orImageCenter)}>
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
