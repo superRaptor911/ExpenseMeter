@@ -7,7 +7,7 @@ import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
-import {createUser} from '../shared/Authentication';
+import {createUser, signInwithGoogle} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
 
 const SignupPageDesktop = () => {
@@ -24,6 +24,14 @@ const SignupPageDesktop = () => {
     });
   };
 
+  const handleGoogleSignup = () => {
+    console.log('Signing New User with gmail');
+    signInwithGoogle().then(() => {
+      console.log('Signup successful with google');
+      history.push('/dashboard');
+    });
+  };
+
   return (
     <div className={css(styles.root)}>
       <div className={css(styles.flex1)}>
@@ -31,10 +39,10 @@ const SignupPageDesktop = () => {
 
         <div className={css(styles.flex1Contents)}>
           <div className={css(styles.heading)}>Create your free account</div>
-          <div className={css(styles.fields)}>
+          <button className={css(styles.fields)} onClick={handleGoogleSignup}>
             <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
             <div className={css(styles.fieldText)}>Sign up with google</div>
-          </div>
+          </button>
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
 
           <Input

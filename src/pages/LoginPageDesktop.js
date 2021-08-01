@@ -5,11 +5,19 @@ import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
 import React, {useState} from 'react';
 import Input from '../components/Input';
-import {Link} from 'react-router-dom';
+import {signinUser} from '../shared/Authentication';
+import {useHistory} from 'react-router-dom';
 
 const LoginPageDesktop = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const handleSigninPress = () => {
+    signinUser(email, password).then(() => {
+      history.push('/dashboard');
+    });
+  };
 
   return (
     <div className={css(styles.root)}>
@@ -46,10 +54,10 @@ const LoginPageDesktop = () => {
             <span>Log In To Your Account</span>
           </div> */}
           <div className={css(styles.heading)}>Log In To Your Account</div>
-          <div className={css(styles.fields)}>
+          <button className={css(styles.fields)}>
             <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
             <div className={css(styles.fieldText)}>Sign up with google</div>
-          </div>
+          </button>
           <div className={css(styles.orImageCenter)}>
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
@@ -85,7 +93,11 @@ const LoginPageDesktop = () => {
             <div className={css(styles.fgtPassword)}>Forgot Password?</div>
           </div>
 
-          <button className={css(styles.loginButton)}>Sign in</button>
+          <button
+            className={css(styles.loginButton)}
+            onClick={handleSigninPress}>
+            Sign in
+          </button>
           <div className={css(styles.signupText)}>
             <span>{"Don't have an account?"} </span>
             <span style={{color: '#EF6B67'}}>sign up</span>
