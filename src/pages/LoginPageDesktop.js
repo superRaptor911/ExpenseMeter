@@ -5,6 +5,7 @@ import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
 import React, {useState} from 'react';
 import Input from '../components/Input';
+import {Link} from 'react-router-dom';
 
 const LoginPageDesktop = () => {
   const [email, setEmail] = useState('');
@@ -33,8 +34,12 @@ const LoginPageDesktop = () => {
       </div>
       <div className={css(styles.second_box)}>
         <div className={css(styles.linkContainer)}>
-          <div className={css(styles.home)}>Home</div>
-          <button className={css(styles.signupBtn)}>Sign Up</button>
+          <Link className={css(styles.loginLink)}>
+            <div className={css(styles.home)}>Home</div>
+          </Link>
+          <Link to="/signup" className={css(styles.loginLink)}>
+            <button className={css(styles.signupBtn)}>Sign Up</button>
+          </Link>
         </div>
         <div className={css(styles.authTextArea)}>
           {/* <div className={css(styles.authTextTitle)}>
@@ -82,7 +87,7 @@ const LoginPageDesktop = () => {
 
           <button className={css(styles.loginButton)}>Sign in</button>
           <div className={css(styles.signupText)}>
-            <span>{'Don\'t have an account?'} </span>
+            <span>{"Don't have an account?"} </span>
             <span style={{color: '#EF6B67'}}>sign up</span>
           </div>
         </div>
@@ -137,6 +142,7 @@ const styles = StyleSheet.create({
     width: 23,
     height: 23,
     marginRight: 8,
+    border: '1px solid rgba(0, 0, 0, 0.75)',
   },
 
   pswdSec: {
@@ -293,6 +299,11 @@ const styles = StyleSheet.create({
     color: '#3D3B59',
     background: 'none',
     padding: '15px 50px',
+    cursor: 'pointer',
+  },
+  loginLink: {
+    cursor: 'pointer',
+    textDecoration: 'none',
   },
 });
 
