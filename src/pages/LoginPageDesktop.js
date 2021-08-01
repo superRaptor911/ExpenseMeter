@@ -7,6 +7,7 @@ import React, {useState} from 'react';
 import Input from '../components/Input';
 import {signinUser} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const LoginPageDesktop = () => {
   const history = useHistory();
