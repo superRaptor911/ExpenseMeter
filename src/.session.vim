@@ -16,24 +16,24 @@ badd +10 index.css
 badd +9 pages/SignupPage.js
 badd +16 shared/FirebaseInit.js
 badd +31 components/Input.js
-badd +42 pages/SignupPageDesktop.js
+badd +233 pages/SignupPageDesktop.js
 badd +8 pages/Home.js
 badd +15 tests/Sign-in-up.test.js
-badd +12 shared/Authentication.js
+badd +45 shared/Authentication.js
 badd +9 pages/Dashboard.js
 badd +1 ~/program/react/track-it/.env
-badd +17 pages/LoginPageDesktop.js
+badd +115 pages/LoginPageDesktop.js
 argglobal
 %argdel
-edit shared/Authentication.js
+edit pages/LoginPageDesktop.js
 argglobal
-balt pages/LoginPageDesktop.js
-let s:l = 14 - ((13 * winheight(0) + 22) / 44)
+balt shared/Authentication.js
+let s:l = 12 - ((11 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 016|
+keepjumps 12
+normal! 025|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
