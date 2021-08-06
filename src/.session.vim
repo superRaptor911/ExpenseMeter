@@ -22,18 +22,18 @@ badd +15 tests/Sign-in-up.test.js
 badd +45 shared/Authentication.js
 badd +9 pages/Dashboard.js
 badd +1 ~/program/react/track-it/.env
-badd +115 pages/LoginPageDesktop.js
+badd +12 pages/LoginPageDesktop.js
 argglobal
 %argdel
-edit pages/LoginPageDesktop.js
+edit tests/Sign-in-up.test.js
 argglobal
-balt shared/Authentication.js
-let s:l = 12 - ((11 * winheight(0) + 22) / 44)
+balt pages/LoginPageDesktop.js
+let s:l = 2 - ((1 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 025|
+keepjumps 2
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

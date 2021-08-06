@@ -1,22 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import {setUserState} from '../shared/Authentication';
+import {useAuth} from '../components/AuthProvider';
 
 const Home = () => {
   const history = useHistory();
-  const [user, setUser] = useState();
+  const user = useAuth();
 
-  useEffect(() => {
-    setUserState(setUser);
-  }, []);
-
-  useEffect(() => {
-    if (user) {
-      console.log('Redirecting to dahboard');
-      history.push('/dashboard');
-    }
-  }, [user]);
-
+  if (user) {
+    console.log('Redirecting to dahboard');
+    history.push('/dashboard');
+  }
   return (
     <div>
       <div>This Is Home Page</div>

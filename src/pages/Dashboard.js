@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {useAuth} from '../components/AuthProvider';
 import {setUserState} from '../shared/Authentication';
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUserState(setUser);
-  }, []);
+  const user = useAuth();
 
   return (
     <div>
