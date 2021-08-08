@@ -8,24 +8,7 @@ import googleIcon from '../media/images/googleIcon.png';
 import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
 import {createUser, signInwithGoogle} from '../shared/Authentication';
-import {useHistory} from 'react-router-dom';
-import {checkForSpecialChars} from '../components/Utility';
-import {setupUser} from '../shared/UserDatabase';
-
-function verifyInput(username, password, password2, setError) {
-  if (username.length < 5 || checkForSpecialChars(username)) {
-    setError(
-      'Username should be atleast 5 characters long and should not contain special characters',
-    );
-    return false;
-  }
-  if (password !== password2) {
-    setError('Password not matching');
-    return false;
-  }
-
-  return true;
-}
+import {Link, useHistory} from 'react-router-dom';
 
 const SignupPageDesktop = () => {
   const history = useHistory();
@@ -33,32 +16,20 @@ const SignupPageDesktop = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignupPress = () => {
     console.log('Signing New User : ', username);
-    verifyInput(username, password, password2, setErrorMessage) &&
-      createUser(email, password)
-        .then(user => {
-          setupUser(user.uid, username);
-          history.push('/dashboard');
-        })
-        .catch(e => {
-          setErrorMessage(e);
-        });
+    createUser(email, password).then(() => {
+      history.push('/dashboard');
+    });
   };
 
   const handleGoogleSignup = () => {
     console.log('Signing New User with gmail');
-    signInwithGoogle()
-      .then(user => {
-        setupUser(user.uid, user.displayName);
-        console.log('Signup successful with google');
-        history.push('/dashboard');
-      })
-      .catch(e => {
-        setErrorMessage(e);
-      });
+    signInwithGoogle().then(() => {
+      console.log('Signup successful with google');
+      history.push('/dashboard');
+    });
   };
 
   return (
@@ -73,9 +44,6 @@ const SignupPageDesktop = () => {
             <div className={css(styles.fieldText)}>Sign up with google</div>
           </button>
           <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
-
-          {/* Error Message Here */}
-          <div className={css(styles.errorMessage)}>{errorMessage}</div>
 
           <Input
             type="text"
@@ -114,13 +82,24 @@ const SignupPageDesktop = () => {
             onClick={handleSignupPress}>
             Sign Up
           </button>
+
+          <div className={css(styles.signupText)}>
+            <span>{'Already have an account?'} </span>
+            <Link to="/login" className={css(styles.linkDec)}>
+              <span style={{color: '#EF6B67'}}>sign in</span>
+            </Link>
+          </div>
         </div>
       </div>
 
       <div className={css(styles.flex2)}>
         <div className={css(styles.linkContainer)}>
-          <div className={css(styles.home)}>Home</div>
-          <button className={css(styles.siginBtn)}>Sign In</button>
+          <Link className={css(styles.linkDec)} to="/dashboard">
+            <div className={css(styles.home)}>Home</div>
+          </Link>
+          <Link className={css(styles.linkDec)} to="/login">
+            <button className={css(styles.signinBtn)}>Sign In</button>
+          </Link>
         </div>
         <img src={piggy} alt="orImg" className={css(styles.piggy)} />
       </div>
@@ -132,8 +111,6 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    fontFamily: 'Poppins',
-    fontStyle: 'normal',
   },
   flex1: {
     width: '50%',
@@ -141,8 +118,12 @@ const styles = StyleSheet.create({
   },
   flex1Contents: {
     marginLeft: 160,
-    marginTop: 40,
+    marginTop: 100,
     maxWidth: 340,
+  },
+  linkDec: {
+    color: '#FFFFFF',
+    textDecoration: 'none',
   },
   heading: {
     fontFamily: 'Poppins',
@@ -203,6 +184,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 12,
     marginTop: 30,
+    ':hover': {
+      backgroundColor: '#000000',
+    },
   },
   flex2: {
     backgroundColor: '#3D3B59',
@@ -221,42 +205,51 @@ const styles = StyleSheet.create({
   linkContainer: {
     display: 'flex',
     marginTop: 40,
-    marginRight: 44,
+    //marginRight: 44,
     marginLeft: 'auto',
     width: 'max-content',
+    position: 'absolute',
     alignItems: 'center',
+    right: '50px',
   },
 
   home: {
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '18px',
+    fontSize: '19px',
     lineHeight: '27px',
     letterSpacing: '0.025em',
     color: '#FFFFFF',
     marginRight: 20,
+    cursor: 'pointer',
   },
-  siginBtn: {
+  signinBtn: {
     border: '2px solid #FFFFFF',
     boxSizing: 'border-box',
     borderRadius: '6.4px',
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '18px',
+    fontSize: '19px',
     lineHeight: '27px',
     letterSpacing: '0.025em',
     color: '#FFFFFF',
     background: 'none',
+    padding: '15px 50px',
+    cursor: 'pointer',
   },
-  errorMessage: {
-    color: 'red',
-    fontSize: 14,
-    backgroundColor: 'pink',
-    padding: 6,
-    borderRadius: 4,
-    marginTop: 4,
+  signupText: {
+    textAlign: 'center',
+    marginTop: 100,
+    fontFamily: 'Poppins',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 16,
+    color: '#5E5E5E',
+    width: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 });
 

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import {css, StyleSheet} from 'aphrodite';
 import orImg from '../media/images/orField.png';
 import googleIcon from '../media/images/googleIcon.png';
@@ -6,33 +5,19 @@ import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
 import React, {useState} from 'react';
 import Input from '../components/Input';
-import {signinUser, signInwithGoogle} from '../shared/Authentication';
+import {signinUser} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const LoginPageDesktop = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSigninPress = () => {
-    signinUser(email, password)
-      .then(() => {
-        history.push('/dashboard');
-      })
-      .catch(e => {
-        setErrorMessage(e);
-      });
-  };
-
-  const handleGoogleSignin = () => {
-    signInwithGoogle()
-      .then(() => {
-        history.push('/dashboard');
-      })
-      .catch(e => {
-        setErrorMessage(e);
-      });
+    signinUser(email, password).then(() => {
+      history.push('/dashboard');
+    });
   };
 
   return (
@@ -56,26 +41,27 @@ const LoginPageDesktop = () => {
           className={css(styles.calcImg)}
         />
       </div>
-
       <div className={css(styles.second_box)}>
         <div className={css(styles.linkContainer)}>
-          <div className={css(styles.home)}>Home</div>
-          <button className={css(styles.signupBtn)}>Sign Up</button>
+          <Link className={css(styles.loginLink)} to="/dashboard">
+            <div className={css(styles.home)}>Home</div>
+          </Link>
+          <Link to="/signup" className={css(styles.loginLink)}>
+            <button className={css(styles.signupBtn)}>Sign Up</button>
+          </Link>
         </div>
         <div className={css(styles.authTextArea)}>
+          {/* <div className={css(styles.authTextTitle)}>
+            <span>Log In To Your Account</span>
+          </div> */}
           <div className={css(styles.heading)}>Log In To Your Account</div>
-
-          <button className={css(styles.fields)} onClick={handleGoogleSignin}>
+          <button className={css(styles.fields)}>
             <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
             <div className={css(styles.fieldText)}>Sign up with google</div>
           </button>
-
           <div className={css(styles.orImageCenter)}>
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
-
-          {/* Error Message Here */}
-          {errorMessage && <div className={css(styles.errorMessage)}>{errorMessage}</div>}
 
           <Input
             type="text"
@@ -115,7 +101,9 @@ const LoginPageDesktop = () => {
           </button>
           <div className={css(styles.signupText)}>
             <span>{'Don\'t have an account?'} </span>
-            <span style={{color: '#EF6B67'}}>sign up</span>
+            <Link to="/signup" className={css(styles.linkDec)}>
+              <span style={{color: '#EF6B67'}}>sign up</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -127,12 +115,10 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'row',
-    fontFamily: 'Poppins',
-    fontStyle: 'normal',
   },
   signupText: {
     textAlign: 'center',
-    marginTop: 30,
+    marginTop: 100,
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -171,6 +157,7 @@ const styles = StyleSheet.create({
     width: 23,
     height: 23,
     marginRight: 8,
+    border: '1px solid rgba(0, 0, 0, 0.75)',
   },
 
   pswdSec: {
@@ -195,18 +182,18 @@ const styles = StyleSheet.create({
   },
 
   first_box: {
-    display: 'flex',
-    flexDirection: 'column',
-    minHeight: '100vh',
-    flexFlow: 'column',
+    height: '100vh',
+    position: 'absolute',
+    //width: 736,
     width: '38.33%',
+    top: 0,
+    bottom: 0,
     background: '#3D3B59',
   },
   second_box: {
     height: '100vh',
     background: '#F6F6F6',
-    maxWidth: '61.67',
-    whiteSpace: 'nowrap'
+    width: '61.67',
   },
   authTextArea: {
     position: 'absolute',
@@ -282,6 +269,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     padding: 12,
     marginTop: 30,
+    ':hover': {
+      backgroundColor: '#000000',
+    },
   },
   heading: {
     fontFamily: 'Poppins',
@@ -296,12 +286,11 @@ const styles = StyleSheet.create({
   linkContainer: {
     display: 'flex',
     marginTop: 40,
-    marginRight: 44,
+    //marginRight: 44,
     marginLeft: 'auto',
     width: 'max-content',
     alignItems: 'center',
     position: 'absolute',
-    //left: '83.3%',
     right: '50px',
   },
   home: {
@@ -313,6 +302,7 @@ const styles = StyleSheet.create({
     letterSpacing: '0.025em',
     color: '#3D3B59',
     marginRight: 20,
+    cursor: 'pointer',
   },
   signupBtn: {
     border: '2px solid #3D3B59',
@@ -327,14 +317,14 @@ const styles = StyleSheet.create({
     color: '#3D3B59',
     background: 'none',
     padding: '15px 50px',
+    cursor: 'pointer',
   },
-  errorMessage: {
-    color: 'red',
-    fontSize: 14,
-    backgroundColor: 'pink',
-    padding: 6,
-    borderRadius: 4,
-    marginTop: 4
+  loginLink: {
+    cursor: 'pointer',
+    textDecoration: 'none',
+  },
+  linkDec: {
+    textDecoration: 'none',
   },
 });
 
