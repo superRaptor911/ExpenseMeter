@@ -74,7 +74,7 @@ const LoginPageDesktop = () => {
           </div>
 
           {/* Error Message Here */}
-          <div className={css(styles.errorMessage)}>{errorMessage}</div>
+          {errorMessage && <div className={css(styles.errorMessage)}>{errorMessage}</div>}
 
           <Input
             type="text"
@@ -330,6 +330,10 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: 'red',
     fontSize: 14,
+    backgroundColor: 'pink',
+    padding: 6,
+    borderRadius: 4,
+    marginTop: 4
   },
 });
 

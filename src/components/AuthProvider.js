@@ -1,7 +1,7 @@
 // Context to provide Current User
 /* eslint-disable react/prop-types */
 import React, {useContext, useEffect, useState} from 'react';
-import {firebaseApp} from '../shared/FirebaseInit';
+import {firebaseAuth} from '../shared/FirebaseInit';
 
 const AuthContext = React.createContext();
 
@@ -14,7 +14,7 @@ export const AuthProvider = ({children}) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = firebaseApp.auth().onAuthStateChanged(user => {
+    const unsubscribe = firebaseAuth.onAuthStateChanged(user => {
       if (user) {
         console.log('user exists');
       } else {

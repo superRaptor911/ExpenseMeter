@@ -1,11 +1,12 @@
-import {firebaseApp} from './FirebaseInit';
+import {firebaseApp, firebaseAuth} from './FirebaseInit';
 
 // Function to create user with email and password
 export async function createUser(email, password) {
   try {
-    const userCredential = await firebaseApp
-      .auth()
-      .createUserWithEmailAndPassword(email, password);
+    const userCredential = await firebaseAuth.createUserWithEmailAndPassword(
+      email,
+      password,
+    );
 
     const user = userCredential.user;
     console.log('Created User with uid = ', user.uid);
@@ -25,9 +26,10 @@ export async function createUser(email, password) {
 // Function to sigin user with email and password
 export async function signinUser(email, password) {
   try {
-    const userCredential = await firebaseApp
-      .auth()
-      .signInWithEmailAndPassword(email, password);
+    const userCredential = await firebaseAuth.signInWithEmailAndPassword(
+      email,
+      password,
+    );
 
     console.log(userCredential);
     const user = userCredential.user;
@@ -49,7 +51,8 @@ export async function signinUser(email, password) {
 export async function signInwithGoogle() {
   const provider = new firebaseApp.auth.GoogleAuthProvider();
   try {
-    const result = await firebaseApp.auth().signInWithPopup(provider);
+    const result = await firebaseAuth.signInWithPopup(provider);
+    console.log('signed in with google');
     return result;
   } catch (error) {
     const errorCode = error.code;
