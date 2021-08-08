@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, css} from 'aphrodite';
 import {useState} from 'react';
 import Logo from '../media/images/loginTitle.png';
-import LoginSvg from '../media/svg_files/loginDisp.svg';
+import LoginSvg from '../media/png_files/loginDisp.png';
 import {Link} from 'react-router-dom';
 import Input from '../components/Input';
 import googleIcon from '../media/images/googleIcon.png';
