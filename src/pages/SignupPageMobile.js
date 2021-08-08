@@ -38,7 +38,7 @@ const SignupMobile = () => {
       </div>
       {/* <div className={css(styles.blueBacground)}></div> */}
       <div className={css(styles.loginSvg)}>
-        <img src={SignupSvg} alt="" className={css(styles.loginDisp)} />
+        <img src={SignupSvg} alt="signup" className={css(styles.loginDisp)} />
       </div>
 
       {/* login section */}
