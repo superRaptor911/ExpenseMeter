@@ -16,7 +16,7 @@ const LoginMobile = () => {
     <div className={css(styles.root)}>
       <div className={css(styles.headerSection)}>
         <div className={css(styles.logo)}>
-          <img src={Logo} className={css(styles.logoM)}></img>
+          <img src={Logo} alt="" className={css(styles.logoM)}></img>
         </div>
         <div className={css(styles.signUp)}>
           {/* <button className={css(styles.signupButton)}></button> */}
