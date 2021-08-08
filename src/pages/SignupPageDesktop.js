@@ -10,6 +10,7 @@ import Input from '../components/Input';
 import {createUser, signInwithGoogle} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
 import {checkForSpecialChars} from '../components/Utility';
+import {setupUser} from '../shared/UserDatabase';
 
 function verifyInput(username, password, password2, setError) {
   if (username.length < 5 || checkForSpecialChars(username)) {
@@ -38,7 +39,8 @@ const SignupPageDesktop = () => {
     console.log('Signing New User : ', username);
     verifyInput(username, password, password2, setErrorMessage) &&
       createUser(email, password)
-        .then(() => {
+        .then(user => {
+          setupUser(user.uid, username);
           history.push('/dashboard');
         })
         .catch(e => {
@@ -49,7 +51,8 @@ const SignupPageDesktop = () => {
   const handleGoogleSignup = () => {
     console.log('Signing New User with gmail');
     signInwithGoogle()
-      .then(() => {
+      .then(user => {
+        setupUser(user.uid, user.displayName);
         console.log('Signup successful with google');
         history.push('/dashboard');
       })

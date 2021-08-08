@@ -53,7 +53,7 @@ export async function signInwithGoogle() {
   try {
     const result = await firebaseAuth.signInWithPopup(provider);
     console.log('signed in with google');
-    return result;
+    return result.user;
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
