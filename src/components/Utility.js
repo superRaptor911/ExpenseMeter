@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export function getDeviceDimention() {
   let width = 0;
   let height = 0;
@@ -9,4 +10,15 @@ export function getDeviceDimention() {
   }
 
   return {width: width, height: height};
+}
+
+// Function to check if string contains special characters or not
+export function checkForSpecialChars(string) {
+  const format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+  if (format.test(string)) {
+    return true;
+  } else {
+    return false;
+  }
 }

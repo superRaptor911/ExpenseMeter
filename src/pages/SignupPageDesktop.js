@@ -9,6 +9,22 @@ import piggy from '../media/images/piggyWithSheet.png';
 import Input from '../components/Input';
 import {createUser, signInwithGoogle} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
+import {checkForSpecialChars} from '../components/Utility';
+
+function verifyInput(username, password, password2, setError) {
+  if (username.length < 5 || checkForSpecialChars(username)) {
+    setError(
+      'Username should be atleast 5 characters long and should not contain special characters',
+    );
+    return false;
+  }
+  if (password !== password2) {
+    setError('Password not matching');
+    return false;
+  }
+
+  return true;
+}
 
 const SignupPageDesktop = () => {
   const history = useHistory();
@@ -20,13 +36,14 @@ const SignupPageDesktop = () => {
 
   const handleSignupPress = () => {
     console.log('Signing New User : ', username);
-    createUser(email, password)
-      .then(() => {
-        history.push('/dashboard');
-      })
-      .catch(e => {
-        setErrorMessage(e);
-      });
+    verifyInput(username, password, password2, setErrorMessage) &&
+      createUser(email, password)
+        .then(() => {
+          history.push('/dashboard');
+        })
+        .catch(e => {
+          setErrorMessage(e);
+        });
   };
 
   const handleGoogleSignup = () => {
@@ -123,7 +140,6 @@ const styles = StyleSheet.create({
     marginLeft: 160,
     marginTop: 40,
     maxWidth: 340,
-    whiteSpace: 'nowrap',
   },
   heading: {
     fontFamily: 'Poppins',
@@ -234,6 +250,10 @@ const styles = StyleSheet.create({
   errorMessage: {
     color: 'red',
     fontSize: 14,
+    backgroundColor: 'pink',
+    padding: 6,
+    borderRadius: 4,
+    marginTop: 4,
   },
 });
 

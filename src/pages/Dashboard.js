@@ -5,7 +5,6 @@ import {createTestUser, testFirestore} from '../temp/firebase-temp';
 
 const Dashboard = () => {
   const user = useAuth();
-  testFirestore();
 
   return (
     <div>

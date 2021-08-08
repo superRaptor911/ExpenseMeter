@@ -16,25 +16,25 @@ badd +10 index.css
 badd +9 pages/SignupPage.js
 badd +23 shared/FirebaseInit.js
 badd +4 components/Input.js
-badd +233 pages/SignupPageDesktop.js
+badd +24 pages/SignupPageDesktop.js
 badd +10 pages/Home.js
 badd +2 tests/Sign-in-up.test.js
-badd +10 shared/Authentication.js
-badd +9 pages/Dashboard.js
+badd +51 shared/Authentication.js
+badd +8 pages/Dashboard.js
 badd +1 ~/program/react/track-it/.env
-badd +79 pages/LoginPageDesktop.js
+badd +30 pages/LoginPageDesktop.js
 badd +15 components/AuthProvider.js
-badd +28 temp/firebase-temp.js
+badd +36 temp/firebase-temp.js
+badd +10 shared/UserDatabase.js
 argglobal
 %argdel
-edit temp/firebase-temp.js
+edit shared/UserDatabase.js
 argglobal
-balt pages/Dashboard.js
-let s:l = 36 - ((28 * winheight(0) + 22) / 44)
+let s:l = 8 - ((7 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 36
+keepjumps 8
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
