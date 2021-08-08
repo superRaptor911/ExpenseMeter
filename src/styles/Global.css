@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css');
+
+body {
+  margin: 0px;
+  height: 100%;
+  font-family: 'Libre Franklin';
+  overflow-x: hidden
+}
