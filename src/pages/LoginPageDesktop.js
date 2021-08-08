@@ -56,6 +56,7 @@ const LoginPageDesktop = () => {
           className={css(styles.calcImg)}
         />
       </div>
+
       <div className={css(styles.second_box)}>
         <div className={css(styles.linkContainer)}>
           <div className={css(styles.home)}>Home</div>
@@ -131,7 +132,7 @@ const styles = StyleSheet.create({
   },
   signupText: {
     textAlign: 'center',
-    marginTop: 100,
+    marginTop: 30,
     fontFamily: 'Poppins',
     fontStyle: 'normal',
     fontWeight: 'normal',
@@ -194,18 +195,18 @@ const styles = StyleSheet.create({
   },
 
   first_box: {
-    height: '100vh',
-    position: 'absolute',
-    //width: 736,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+    flexFlow: 'column',
     width: '38.33%',
-    top: 0,
-    bottom: 0,
     background: '#3D3B59',
   },
   second_box: {
     height: '100vh',
     background: '#F6F6F6',
-    width: '61.67',
+    maxWidth: '61.67',
+    whiteSpace: 'nowrap'
   },
   authTextArea: {
     position: 'absolute',
