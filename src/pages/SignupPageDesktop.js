@@ -121,8 +121,9 @@ const styles = StyleSheet.create({
   },
   flex1Contents: {
     marginLeft: 160,
-    marginTop: 100,
+    marginTop: 40,
     maxWidth: 340,
+    whiteSpace: 'nowrap',
   },
   heading: {
     fontFamily: 'Poppins',
