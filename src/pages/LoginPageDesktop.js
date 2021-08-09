@@ -5,7 +5,7 @@ import titleImg from '../media/images/exp_logo.png';
 import calcImg from '../media/images/calc.png';
 import React, {useState} from 'react';
 import Input from '../components/Input';
-import {signinUser} from '../shared/Authentication';
+import {signinUser, signInwithGoogle} from '../shared/Authentication';
 import {useHistory} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
@@ -13,11 +13,26 @@ const LoginPageDesktop = () => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSigninPress = () => {
-    signinUser(email, password).then(() => {
-      history.push('/dashboard');
-    });
+    signinUser(email, password)
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    signInwithGoogle()
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
   };
 
   return (
@@ -55,7 +70,7 @@ const LoginPageDesktop = () => {
             <span>Log In To Your Account</span>
           </div> */}
           <div className={css(styles.heading)}>Log In To Your Account</div>
-          <button className={css(styles.fields)}>
+          <button className={css(styles.fields)} onClick={handleGoogleSignin}>
             <img src={googleIcon} alt="gicon" className={css(styles.icon)} />
             <div className={css(styles.fieldText)}>Sign up with google</div>
           </button>
@@ -63,6 +78,10 @@ const LoginPageDesktop = () => {
             <img src={orImg} alt="orImg" className={css(styles.orIcon)} />
           </div>
 
+          {/* error message here */}
+          {errorMessage && (
+            <div className={css(styles.errorMessage)}>{errorMessage}</div>
+          )}
           <Input
             type="text"
             placeholder="Email:"
@@ -100,7 +119,7 @@ const LoginPageDesktop = () => {
             Sign in
           </button>
           <div className={css(styles.signupText)}>
-            <span>{'Don\'t have an account?'} </span>
+            <span>{"Don't have an account?"} </span>
             <Link to="/signup" className={css(styles.linkDec)}>
               <span style={{color: '#EF6B67'}}>sign up</span>
             </Link>
@@ -272,6 +291,14 @@ const styles = StyleSheet.create({
     ':hover': {
       backgroundColor: '#000000',
     },
+  },
+  errorMessage: {
+    color: 'red',
+    fontSize: 14,
+    backgroundColor: 'pink',
+    padding: 6,
+    borderRadius: 4,
+    marginTop: 4,
   },
   heading: {
     fontFamily: 'Poppins',

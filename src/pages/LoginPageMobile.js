@@ -3,7 +3,8 @@ import {StyleSheet, css} from 'aphrodite';
 import {useState} from 'react';
 import Logo from '../media/images/loginTitle.png';
 import LoginSvg from '../media/png_files/loginDisp.png';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {signinUser, signInwithGoogle} from '../shared/Authentication';
 import Input from '../components/Input';
 import googleIcon from '../media/images/googleIcon.png';
 import orImg from '../media/images/orField.png';
@@ -11,6 +12,28 @@ import orImg from '../media/images/orField.png';
 const LoginMobile = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSigninPress = () => {
+    signinUser(email, password)
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
+  };
+
+  const handleGoogleSignin = () => {
+    signInwithGoogle()
+      .then(() => {
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
+  };
+
 
   return (
     <div className={css(styles.root)}>

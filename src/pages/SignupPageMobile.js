@@ -7,20 +7,58 @@ import {Link, useHistory} from 'react-router-dom';
 import Input from '../components/Input';
 import googleIcon from '../media/images/googleIcon.png';
 import orImg from '../media/images/orField.png';
-import {createUser} from '../shared/Authentication';
+import {createUser, signInwithGoogle} from '../shared/Authentication';
+
+import {checkForSpecialChars} from '../components/Utility';
+import {setupUser} from '../shared/UserDatabase';
+
+function verifyInput(username, password, password2, setError) {
+  if (username.length < 5 || checkForSpecialChars(username)) {
+    setError(
+      'Username should be atleast 5 characters long and should not contain special characters',
+    );
+    return false;
+  }
+  if (password !== password2) {
+    setError('Password not matching');
+    return false;
+  }
+
+  return true;
+}
 
 const SignupMobile = () => {
-  const [name, setName] = useState('');
+  const history = useHistory();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const history = useHistory();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSignupPress = () => {
-    console.log('Signing New User : ', name);
-    createUser(email, password).then(() => {
-      history.push('/dashboard');
-    });
+    console.log('Signing New User : ', username);
+    verifyInput(username, password, password2, setErrorMessage) &&
+      createUser(email, password)
+        .then(user => {
+          setupUser(user.uid, username);
+          history.push('/dashboard');
+        })
+        .catch(e => {
+          setErrorMessage(e);
+        });
+  };
+
+  const handleGoogleSignup = () => {
+    console.log('Signing New User with gmail');
+    signInwithGoogle()
+      .then(user => {
+        setupUser(user.uid, user.displayName);
+        console.log('Signup successful with google');
+        history.push('/dashboard');
+      })
+      .catch(e => {
+        setErrorMessage(e);
+      });
   };
 
   return (
@@ -62,7 +100,7 @@ const SignupMobile = () => {
           placeholder="Name:"
           className={css(styles.fields)}
           value={name}
-          setValue={setName}
+          setValue={username}
         />
 
         <Input
@@ -100,7 +138,7 @@ const SignupMobile = () => {
 
             <div>
               <label htmlFor="checkbox" className={css(styles.labelText)}>
-                Agree to {'Createme\'s'}{' '}
+                Agree to {"Createme's"}{' '}
                 <span className={css(styles.toSer)}> terms of service </span>
                 and <span className={css(styles.toSer)}> privacy policy </span>
               </label>
