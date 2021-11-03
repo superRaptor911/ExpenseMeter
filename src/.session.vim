@@ -17,18 +17,19 @@ badd +6 pages/Home.jsx
 badd +29 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +21 pages/Transactions.jsx
-badd +10 components/transactions/TransItem.jsx
+badd +8 components/transactions/TransItem.jsx
+badd +7 components/transactions/TransList.jsx
 argglobal
 %argdel
 edit pages/Transactions.jsx
 argglobal
-balt pages/Login.jsx
-let s:l = 21 - ((20 * winheight(0) + 22) / 45)
+balt components/transactions/TransList.jsx
+let s:l = 36 - ((35 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 21
-normal! 09|
+keepjumps 36
+normal! 036|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

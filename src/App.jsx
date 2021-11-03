@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Transactions from './pages/Transactions';
 import {ROUTES} from './Routes';
+
+const Transactions = lazy(() => import('./pages/Transactions'));
 
 function App() {
   return (
@@ -23,9 +24,9 @@ function App() {
             <Dashboard />
           </Route>
 
-          <Route exact path={ROUTES.transactions}>
-            <Transactions />
-          </Route>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Route exact path={ROUTES.transactions} component={Transactions} />
+          </Suspense>
         </Switch>
       </Router>
     </div>

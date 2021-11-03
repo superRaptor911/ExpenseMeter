@@ -33,3 +33,26 @@ export async function listTransctions(username, password) {
 
   return getData(response);
 }
+
+export async function addTransaction(
+  cred,
+  title,
+  transType,
+  note,
+  date,
+  amount,
+  category,
+) {
+  const response = await postRequest(url + 'transactions/add', {
+    name: cred.name,
+    password: cred.password,
+    title: title,
+    transType: transType,
+    note: note,
+    date: date,
+    amount: amount,
+    category: category,
+  });
+
+  return getData(response);
+}
