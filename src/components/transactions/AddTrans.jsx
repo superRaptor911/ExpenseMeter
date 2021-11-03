@@ -52,7 +52,7 @@ const AddTrans = () => {
   };
 
   return (
-    <div>
+    <div style={{margin: 'auto', width: 'max-content', marginTop: 20}}>
       <Fab color="primary" aria-label="add" onClick={toggleModal}>
         <AddIcon />
       </Fab>

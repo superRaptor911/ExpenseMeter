@@ -4,8 +4,11 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import {loginUser} from '../api/api';
 import {useStore} from '../store';
+import {useHistory} from 'react-router-dom';
+import {ROUTES} from '../Routes';
 
 const Login = () => {
+  const history = useHistory();
   const nameRef = useRef('');
   const passwordRef = useRef('');
 
@@ -18,6 +21,7 @@ const Login = () => {
     if (result) {
       console.log('GG!');
       setCred({name: username, password: password});
+      history.push(ROUTES.dashboard);
     }
   };
 

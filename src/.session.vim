@@ -11,26 +11,27 @@ set shortmess=aoO
 badd +30 App.jsx
 badd +1 ~/.config/nvim/UltiSnips/javascriptreact.snippets
 badd +15 store.js
-badd +20 pages/Login.jsx
+badd +24 pages/Login.jsx
 badd +5 Routes.js
 badd +6 pages/Home.jsx
 badd +57 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +15 pages/Transactions.jsx
-badd +3 components/transactions/TransItem.jsx
-badd +7 components/transactions/TransList.jsx
-badd +15 components/transactions/AddTrans.jsx
+badd +18 components/transactions/TransItem.jsx
+badd +14 components/transactions/TransList.jsx
+badd +37 components/transactions/AddTrans.jsx
+badd +8 index.css
 argglobal
 %argdel
-edit components/transactions/AddTrans.jsx
+edit components/transactions/TransItem.jsx
 argglobal
-balt store.js
-let s:l = 15 - ((0 * winheight(0) + 22) / 45)
+balt components/transactions/TransList.jsx
+let s:l = 65 - ((42 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 024|
+keepjumps 65
+normal! 027|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
