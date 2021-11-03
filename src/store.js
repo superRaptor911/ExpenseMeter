@@ -10,17 +10,23 @@ let store = set => ({
   setCred: cred => set({credential: cred}),
 
   transactions: null,
-  addTransaction: item => {
-    set(state => ({
-      transactions: state.transactions ? [...state.transactions, item] : [item],
-    }));
-  },
   loadTransactions: async cred => {
     if (cred) {
       const data = await listTransctions(cred.name, cred.password);
       return set({transactions: data});
     }
     return set({transactions: null});
+  },
+  addTransaction: item => {
+    set(state => ({
+      transactions: state.transactions ? [...state.transactions, item] : [item],
+    }));
+  },
+
+  deleteTransaction: id => {
+    set(state => ({
+      transactions: state.transactions.filter(item => item._id != id),
+    }));
   },
 });
 

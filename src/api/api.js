@@ -56,3 +56,13 @@ export async function addTransaction(
 
   return getData(response);
 }
+
+export async function deleteTransaction(cred, id) {
+  const response = await postRequest(url + 'transactions/delete', {
+    name: cred.name,
+    password: cred.password,
+    id: id,
+  });
+
+  return getIfValid(response);
+}

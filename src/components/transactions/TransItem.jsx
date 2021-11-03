@@ -11,9 +11,21 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import {format} from 'date-fns';
+import {deleteTransaction} from '../../api/api';
+import {useStore} from '../../store';
 
 const TransItem = ({transaction}) => {
-  const {title, transType, amount, note, category, date} = transaction;
+  const {title, transType, amount, note, category, date, _id} = transaction;
+  const cred = useStore(state => state.credential);
+  const storeDeleteTrans = useStore(state => state.deleteTransaction);
+
+  const handleDelete = async () => {
+    const result = await deleteTransaction(cred, _id);
+    if (result) {
+      console.log('deleted ', _id);
+      storeDeleteTrans(_id);
+    }
+  };
 
   return (
     <Paper
@@ -28,7 +40,7 @@ const TransItem = ({transaction}) => {
         <IconButton>
           <EditIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleDelete}>
           <DeleteIcon sx={{color: 'error.light', marginLeft: 1}} />
         </IconButton>
       </div>
