@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import {Container} from '@mui/material';
+import {isThisWeek} from 'date-fns';
 import React from 'react';
 import TransItem from './TransItem';
 
-const TransList = ({transactions}) => {
+const ThisWeek = ({transactions}) => {
   return (
     <Container
       sx={{
@@ -12,11 +13,11 @@ const TransList = ({transactions}) => {
         overflowY: 'auto',
       }}>
       {transactions &&
-        transactions.map((item, id) => (
-          <TransItem key={id} transaction={item} />
-        ))}
+        transactions
+          .filter(item => isThisWeek(new Date(item.date)))
+          .map((item, id) => <TransItem key={id} transaction={item} />)}
     </Container>
   );
 };
 
-export default TransList;
+export default ThisWeek;
