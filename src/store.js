@@ -47,5 +47,11 @@ let store = set => ({
   },
 });
 
+let uiStore = set => ({
+  showSideBar: false,
+  toggleSideBar: () => set(state => ({showSideBar: !state.showSideBar})),
+});
+
 store = persist(store);
 export const useStore = create(store);
+export const useUiStore = create(uiStore);

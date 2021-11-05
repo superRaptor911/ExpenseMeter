@@ -24,21 +24,24 @@ const CategoryItem = ({item}) => {
         marginBottom: 5,
         maxWidth: 800,
       }}>
-      <div style={{display: 'flex', width: 'max-content', marginLeft: 'auto'}}>
-        <IconButton>
-          <EditIcon />
-        </IconButton>
-        <IconButton onClick={handleDelete}>
-          <DeleteIcon sx={{color: 'error.light', marginLeft: 1}} />
-        </IconButton>
-      </div>
+      <div style={{display: 'flex'}}>
+        <Typography
+          textAlign="center"
+          variant="h6"
+          sx={{textTransform: 'capitalize', color: color}}>
+          {title}
+        </Typography>
 
-      <Typography
-        textAlign="center"
-        variant="h6"
-        sx={{textTransform: 'capitalize'}}>
-        {title}
-      </Typography>
+        <div
+          style={{display: 'flex', width: 'max-content', marginLeft: 'auto'}}>
+          <IconButton>
+            <EditIcon />
+          </IconButton>
+          <IconButton onClick={handleDelete}>
+            <DeleteIcon sx={{color: 'error.light', marginLeft: 1}} />
+          </IconButton>
+        </div>
+      </div>
 
       <Accordion sx={{marginTop: 1}}>
         <AccordionSummary
