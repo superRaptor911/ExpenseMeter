@@ -30,6 +30,7 @@ const SideDrawer = () => {
               <ListItemButton
                 onClick={() => {
                   history.push(item.path);
+                  toggleSideBar();
                 }}>
                 <ListItemText primary={item.name} />
               </ListItemButton>

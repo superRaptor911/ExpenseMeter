@@ -22,7 +22,7 @@ export async function loginUser(username, password) {
     password: password,
   });
 
-  return getIfValid(response);
+  return response;
 }
 
 export async function listTransctions(username, password) {
