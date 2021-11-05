@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import {ROUTES} from './Routes';
 
 const Transactions = lazy(() => import('./pages/Transactions'));
+const Categories = lazy(() => import('./pages/Categories'));
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 
           <Suspense fallback={<div>Loading...</div>}>
             <Route exact path={ROUTES.transactions} component={Transactions} />
+            <Route exact path={ROUTES.categories} component={Categories} />
           </Suspense>
         </Switch>
       </Router>

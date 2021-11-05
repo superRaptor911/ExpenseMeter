@@ -66,3 +66,35 @@ export async function deleteTransaction(cred, id) {
 
   return getIfValid(response);
 }
+
+export async function listCategories(cred) {
+  const response = await postRequest(url + 'category/', {
+    name: cred.name,
+    password: cred.password,
+  });
+
+  return getData(response);
+}
+
+export async function addCategories(
+  cred,
+  title,
+  color,
+  description,
+  dailyLimit,
+  weeklyLimit,
+  monthlyLimit,
+) {
+  const response = await postRequest(url + 'category/add', {
+    name: cred.name,
+    password: cred.password,
+    title: title,
+    color: color,
+    description: description,
+    dailyLimit: dailyLimit,
+    weeklyLimit: weeklyLimit,
+    monthlyLimit: monthlyLimit,
+  });
+
+  return getData(response);
+}

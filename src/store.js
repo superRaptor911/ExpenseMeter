@@ -1,6 +1,6 @@
 import create from 'zustand';
 import {persist} from 'zustand/middleware';
-import {listTransctions} from './api/api';
+import {listCategories, listTransctions} from './api/api';
 
 let store = set => ({
   count: 0,
@@ -22,10 +22,27 @@ let store = set => ({
       transactions: state.transactions ? [...state.transactions, item] : [item],
     }));
   },
-
   deleteTransaction: id => {
     set(state => ({
       transactions: state.transactions.filter(item => item._id != id),
+    }));
+  },
+
+  categories: null,
+  loadCategories: async cred => {
+    if (cred) {
+      const data = await listCategories(cred);
+      set({categories: data});
+    }
+  },
+  addCategory: item => {
+    set(state => ({
+      categories: state.categories ? [...state.categories, item] : [item],
+    }));
+  },
+  deleteCategory: id => {
+    set(state => ({
+      categories: state.categories.filter(item => item._id != id),
     }));
   },
 });
