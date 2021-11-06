@@ -1,6 +1,5 @@
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import React, {useRef, useState} from 'react';
+/* eslint-disable react/prop-types */
+import React, {useEffect, useRef, useState} from 'react';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -12,34 +11,46 @@ import InputLabel from '@mui/material/InputLabel';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateTimePicker from '@mui/lab/DateTimePicker';
-import {addTransaction} from '../../api/api';
+import {editTransaction} from '../../api/api';
 import {useStore} from '../../store';
 
-const AddTrans = () => {
-  const [showModal, setShowModal] = useState(false);
+const EditTrans = ({id, setShowEditMenu}) => {
   const [transType, setTransType] = useState('EXPENSE');
   const [category, setCategory] = useState('');
   const [date, setDate] = useState(new Date());
+  const [title, setTitle] = useState();
+  const [note, setNote] = useState();
+  const [amount, setAmount] = useState();
 
   const cred = useStore(state => state.credential);
   const categories = useStore(state => state.categories);
-  const storeAddTrans = useStore(state => state.addTransaction);
+  const transactions = useStore(state => state.transactions);
+  const storeEditTrans = useStore(state => state.editTransaction);
 
-  const titleRef = useRef();
-  const noteRef = useRef();
-  const amountRef = useRef();
+  useEffect(() => {
+    let oldTrans = null;
+    for (const i of transactions) {
+      if (i._id === id) {
+        oldTrans = i;
+        break;
+      }
+    }
+    if (!oldTrans) {
+      console.error('EditTrans::Fatal error! cant find ', id);
+    }
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
+    setTransType(oldTrans.transType);
+    setCategory(oldTrans.category);
+    setDate(oldTrans.date);
+    setTitle(oldTrans.title);
+    setNote(oldTrans.note);
+    setAmount(oldTrans.amount);
+  }, [id]);
 
   const handleSubmit = async () => {
-    const title = titleRef.current.value;
-    const note = noteRef.current.value;
-    const amount = amountRef.current.value;
-
-    const result = await addTransaction(
+    const result = await editTransaction(
       cred,
+      id,
       title,
       transType,
       note,
@@ -47,20 +58,20 @@ const AddTrans = () => {
       amount,
       category,
     );
+
     if (result) {
-      storeAddTrans(result);
-      setShowModal(false);
+      storeEditTrans(result);
     }
+    setShowEditMenu(false);
   };
 
   return (
     <div style={{margin: 'auto', width: 'max-content', marginTop: 20}}>
-      <Fab color="primary" aria-label="add" onClick={toggleModal}>
-        <AddIcon />
-      </Fab>
       <Modal
-        open={showModal}
-        onClose={toggleModal}
+        open={true}
+        onClose={() => {
+          setShowEditMenu(false);
+        }}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
         <Paper
@@ -79,7 +90,10 @@ const AddTrans = () => {
             label="Title"
             variant="standard"
             required
-            inputRef={titleRef}
+            value={title}
+            onChange={event => {
+              setTitle(event.target.value);
+            }}
           />
 
           <InputLabel id="demo-simple-select-label">Type</InputLabel>
@@ -116,15 +130,21 @@ const AddTrans = () => {
             id="standard-basic"
             label="Note"
             variant="standard"
-            inputRef={noteRef}
+            value={note}
+            onChange={event => {
+              setNote(event.target.value);
+            }}
           />
           <TextField
             id="standard-basic"
-            label="Amout"
+            label="Amount"
             type="number"
             variant="standard"
             required
-            inputRef={amountRef}
+            value={amount}
+            onChange={event => {
+              setAmount(event.target.value);
+            }}
           />
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -147,4 +167,4 @@ const AddTrans = () => {
   );
 };
 
-export default AddTrans;
+export default EditTrans;

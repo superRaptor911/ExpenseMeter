@@ -27,6 +27,16 @@ let store = set => ({
       transactions: state.transactions.filter(item => item._id != id),
     }));
   },
+  editTransaction: newItem => {
+    set(state => ({
+      transactions: state.transactions.map(item => {
+        if (newItem._id === item._id) {
+          item = newItem;
+        }
+        return item;
+      }),
+    }));
+  },
 
   categories: null,
   loadCategories: async cred => {

@@ -22,23 +22,21 @@ const SideDrawer = () => {
   const history = useHistory();
 
   return (
-    <div>
-      <Drawer open={showSideBar} onClose={toggleSideBar} sx={{minWidth: 300}}>
-        <List>
-          {Items.map((item, id) => (
-            <ListItem key={id}>
-              <ListItemButton
-                onClick={() => {
-                  history.push(item.path);
-                  toggleSideBar();
-                }}>
-                <ListItemText primary={item.name} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-    </div>
+    <Drawer open={showSideBar} onClose={toggleSideBar} sx={{minWidth: 300}}>
+      <List>
+        {Items.map((item, id) => (
+          <ListItem key={id}>
+            <ListItemButton
+              onClick={() => {
+                history.push(item.path);
+                toggleSideBar();
+              }}>
+              <ListItemText primary={item.name} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Drawer>
   );
 };
 export default SideDrawer;

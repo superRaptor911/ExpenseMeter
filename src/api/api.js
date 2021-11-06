@@ -67,6 +67,31 @@ export async function deleteTransaction(cred, id) {
   return getIfValid(response);
 }
 
+export async function editTransaction(
+  cred,
+  id,
+  title,
+  transType,
+  note,
+  date,
+  amount,
+  category,
+) {
+  const response = await postRequest(url + 'transactions/edit', {
+    name: cred.name,
+    password: cred.password,
+    id: id,
+    title: title,
+    transType: transType,
+    note: note,
+    date: date,
+    amount: amount,
+    category: category,
+  });
+
+  return getData(response);
+}
+
 export async function listCategories(cred) {
   const response = await postRequest(url + 'category/', {
     name: cred.name,
