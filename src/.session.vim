@@ -8,15 +8,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +31 App.jsx
-badd +1 ~/.config/nvim/UltiSnips/javascriptreact.snippets
+badd +44 App.jsx
 badd +30 store.js
 badd +40 pages/Login.jsx
-badd +6 Routes.js
+badd +7 Routes.js
 badd +6 pages/Home.jsx
-badd +71 api/api.js
+badd +93 api/api.js
 badd +21 pages/Dashboard.jsx
-badd +40 pages/Transactions.jsx
+badd +12 pages/Transactions.jsx
 badd +108 components/transactions/TransItem.jsx
 badd +10 components/transactions/TransList.jsx
 badd +51 components/transactions/AddTrans.jsx
@@ -29,19 +28,23 @@ badd +21 components/categories/ListCategories.jsx
 badd +27 components/categories/CategoryItem.jsx
 badd +63 components/categories/AddCategory.jsx
 badd +59 components/Header.jsx
-badd +25 components/SideDrawer.jsx
+badd +17 components/SideDrawer.jsx
 badd +46 components/transactions/EditTrans.jsx
+badd +26 pages/Summary.jsx
+badd +1 components/summary/DailySummary.jsx
+badd +47 components/summary/helper.js
+badd +13 components/summary/WeeklySummary.jsx
 argglobal
 %argdel
-edit api/api.js
+edit components/summary/helper.js
 argglobal
-balt components/transactions/AddTrans.jsx
-let s:l = 90 - ((40 * winheight(0) + 22) / 45)
+balt pages/Summary.jsx
+let s:l = 42 - ((39 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 90
-normal! 05|
+keepjumps 42
+normal! 039|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

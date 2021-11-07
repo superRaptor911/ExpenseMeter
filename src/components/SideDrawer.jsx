@@ -14,6 +14,7 @@ const Items = [
   {name: 'Dashboard', path: ROUTES.dashboard},
   {name: 'Transactions', path: ROUTES.transactions},
   {name: 'Categories', path: ROUTES.categories},
+  {name: 'Summary', path: ROUTES.summary},
 ];
 
 const SideDrawer = () => {

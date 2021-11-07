@@ -10,6 +10,7 @@ import {useStore} from './store';
 
 const Transactions = lazy(() => import('./pages/Transactions'));
 const Categories = lazy(() => import('./pages/Categories'));
+const Summary = lazy(() => import('./pages/Summary'));
 
 function App() {
   const cred = useStore(state => state.credential);
@@ -40,6 +41,7 @@ function App() {
                   component={Transactions}
                 />
                 <Route exact path={ROUTES.categories} component={Categories} />
+                <Route exact path={ROUTES.summary} component={Summary} />
               </Suspense>
             </>
           )}

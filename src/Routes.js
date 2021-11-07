@@ -4,4 +4,5 @@ export const ROUTES = {
   dashboard: '/dashboard',
   transactions: '/transactions',
   categories: '/categories',
+  summary: '/summary',
 };
