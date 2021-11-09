@@ -11,6 +11,7 @@ import {
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
 import MonthlySummary from '../components/summary/MonthlySummary';
+import DailyBarGraph from '../components/summaryGraphs/DailyBarGraph';
 
 const Panel = ({tabIndex, id, children}) => {
   return <>{tabIndex === id && children}</>;
@@ -59,6 +60,10 @@ const Summary = () => {
           monthlyTransactions={monthlyTrans}
           categories={categories}
         />
+      </Panel>
+
+      <Panel tabIndex={tabIndex} id={1}>
+        <DailyBarGraph transactions={transactions} />
       </Panel>
     </div>
   );
