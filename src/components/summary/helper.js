@@ -45,3 +45,20 @@ export const getMonthlyTransaction = transactions => {
 
   return monthlyTransactions;
 };
+
+export const getCategoryLimit = (categories, type) => {
+  let limit = 0;
+  let key = 'monthlyLimit';
+
+  if (type === 'DAILY') {
+    key = 'dailyLimit';
+  } else if (type === 'WEEKLY') {
+    key = 'weeklyLimit';
+  }
+
+  categories &&
+    categories.forEach(item => {
+      limit += parseFloat(item[key]);
+    });
+  return limit;
+};

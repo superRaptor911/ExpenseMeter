@@ -3,15 +3,15 @@ import {Paper, Typography} from '@mui/material';
 import React from 'react';
 import {getCategoryLimit, getTotalSpent} from './helper';
 
-const DailySummary = ({dailyTransactions, categories}) => {
-  const transCount = dailyTransactions ? dailyTransactions.length : 0;
-  const totalSpent = getTotalSpent(dailyTransactions);
-  const limit = getCategoryLimit(categories, 'DAILY');
+const MonthlySummary = ({monthlyTransactions, categories}) => {
+  const transCount = monthlyTransactions ? monthlyTransactions.length : 0;
+  const totalSpent = getTotalSpent(monthlyTransactions);
+  const limit = getCategoryLimit(categories, 'MONTHLY');
 
   return (
     <Paper sx={{maxWidth: 800, margin: 'auto', padding: 2, marginTop: 5}}>
       <Typography variant="h5" textAlign="center">
-        Today
+        This Month
       </Typography>
 
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -32,4 +32,4 @@ const DailySummary = ({dailyTransactions, categories}) => {
   );
 };
 
-export default DailySummary;
+export default MonthlySummary;

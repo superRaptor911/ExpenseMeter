@@ -10,6 +10,7 @@ import {
 } from '../components/summary/helper';
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
+import MonthlySummary from '../components/summary/MonthlySummary';
 
 const Panel = ({tabIndex, id, children}) => {
   return <>{tabIndex === id && children}</>;
@@ -18,6 +19,7 @@ const Panel = ({tabIndex, id, children}) => {
 const Summary = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const transactions = useStore(state => state.transactions);
+  const categories = useStore(state => state.categories);
 
   const [dailyTrans, setDailyTrans] = useState();
   const [weeklyTrans, setWeeklyTrans] = useState();
@@ -48,8 +50,15 @@ const Summary = () => {
         </Tabs>
       </div>
       <Panel tabIndex={tabIndex} id={0}>
-        <DailySummary dailyTransactions={dailyTrans} />
-        <WeeklySummary weeklyTransactions={weeklyTrans} />
+        <DailySummary dailyTransactions={dailyTrans} categories={categories} />
+        <WeeklySummary
+          weeklyTransactions={weeklyTrans}
+          categories={categories}
+        />
+        <MonthlySummary
+          monthlyTransactions={monthlyTrans}
+          categories={categories}
+        />
       </Panel>
     </div>
   );
