@@ -44,7 +44,11 @@ const DailySummary = ({dailyTransactions, categories}) => {
         <AccordionDetails>
           {dailyTransactions &&
             dailyTransactions.map(item => (
-              <SumTransItem trans={item} key={item._id} />
+              <SumTransItem
+                trans={item}
+                key={item._id}
+                categories={categories}
+              />
             ))}
         </AccordionDetails>
       </Accordion>

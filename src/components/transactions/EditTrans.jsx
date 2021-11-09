@@ -119,8 +119,8 @@ const EditTrans = ({id, setShowEditMenu}) => {
               setCategory(event.target.value);
             }}>
             {categories &&
-              categories.map((item, id) => (
-                <MenuItem value={item.title} key={id}>
+              categories.map(item => (
+                <MenuItem value={item._id} key={item._id}>
                   {item.title}
                 </MenuItem>
               ))}

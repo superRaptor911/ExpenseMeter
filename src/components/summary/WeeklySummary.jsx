@@ -44,7 +44,11 @@ const WeeklySummary = ({weeklyTransactions, categories}) => {
         <AccordionDetails>
           {weeklyTransactions &&
             weeklyTransactions.map(item => (
-              <SumTransItem trans={item} key={item._id} />
+              <SumTransItem
+                trans={item}
+                key={item._id}
+                categories={categories}
+              />
             ))}
         </AccordionDetails>
       </Accordion>

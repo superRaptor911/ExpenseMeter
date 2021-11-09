@@ -14,16 +14,7 @@ import {format} from 'date-fns';
 import {deleteTransaction} from '../../api/api';
 import {useStore} from '../../store';
 import EditTrans from './EditTrans';
-
-const getCategoryColor = (category, categories) => {
-  for (const i of categories) {
-    if (i.title === category) {
-      return i.color;
-    }
-  }
-
-  return '';
-};
+import {getCategoryColor, getCategoryTitle} from './helper';
 
 const TransItem = ({transaction}) => {
   const {title, transType, amount, note, category, date, _id} = transaction;
@@ -91,7 +82,7 @@ const TransItem = ({transaction}) => {
               padding: 0.25,
               borderRadius: 1,
             }}>
-            {category}
+            {getCategoryTitle(category, categories)}
           </Typography>
           <Typography>{format(new Date(date), 'dd-MMM-yyyy')}</Typography>
         </div>

@@ -44,7 +44,11 @@ const MonthlySummary = ({monthlyTransactions, categories}) => {
         <AccordionDetails>
           {monthlyTransactions &&
             monthlyTransactions.map(item => (
-              <SumTransItem trans={item} key={item._id} />
+              <SumTransItem
+                trans={item}
+                key={item._id}
+                categories={categories}
+              />
             ))}
         </AccordionDetails>
       </Accordion>
