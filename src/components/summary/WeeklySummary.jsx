@@ -2,6 +2,11 @@
 import {Paper, Typography} from '@mui/material';
 import React from 'react';
 import {getCategoryLimit, getTotalSpent} from './helper';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SumTransItem from './SumTransItem';
 
 const WeeklySummary = ({weeklyTransactions, categories}) => {
   const transCount = weeklyTransactions ? weeklyTransactions.length : 0;
@@ -28,6 +33,21 @@ const WeeklySummary = ({weeklyTransactions, categories}) => {
         <Typography>Limit:</Typography>
         <Typography>₹{limit}</Typography>
       </div>
+
+      <Accordion sx={{marginTop: 1}}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1a-content"
+          id="panel1a-header">
+          <Typography>Transactions:</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {weeklyTransactions &&
+            weeklyTransactions.map(item => (
+              <SumTransItem trans={item} key={item._id} />
+            ))}
+        </AccordionDetails>
+      </Accordion>
     </Paper>
   );
 };
