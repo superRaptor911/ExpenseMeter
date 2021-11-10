@@ -11,7 +11,7 @@ import {
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
 import MonthlySummary from '../components/summary/MonthlySummary';
-import DailyBarGraph from '../components/summaryGraphs/DailyBarGraph';
+import SummaryBarGraph from '../components/summaryGraphs/SummaryBarGraph';
 
 const Panel = ({tabIndex, id, children}) => {
   return <>{tabIndex === id && children}</>;
@@ -48,6 +48,7 @@ const Summary = () => {
           aria-label="Summary">
           <Tab label="Summary" />
           <Tab label="Graph" />
+          <Tab label="Comparison" />
         </Tabs>
       </div>
       <Panel tabIndex={tabIndex} id={0}>
@@ -63,7 +64,7 @@ const Summary = () => {
       </Panel>
 
       <Panel tabIndex={tabIndex} id={1}>
-        <DailyBarGraph transactions={transactions} />
+        <SummaryBarGraph transactions={transactions} />
       </Panel>
     </div>
   );

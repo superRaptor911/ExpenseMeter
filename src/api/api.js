@@ -1,4 +1,4 @@
-import {getRequest, postRequest} from './request';
+import {postRequest} from './request';
 
 const url = 'http://localhost:8080/';
 
@@ -122,4 +122,39 @@ export async function addCategories(
   });
 
   return getData(response);
+}
+
+export async function editCategory(
+  cred,
+  id,
+  title,
+  color,
+  description,
+  dailyLimit,
+  weeklyLimit,
+  monthlyLimit,
+) {
+  const response = await postRequest(url + 'category/edit', {
+    name: cred.name,
+    password: cred.password,
+    id: id,
+    title: title,
+    color: color,
+    description: description,
+    dailyLimit: dailyLimit,
+    weeklyLimit: weeklyLimit,
+    monthlyLimit: monthlyLimit,
+  });
+
+  return getData(response);
+}
+
+export async function deleteCategory(cred, id) {
+  const response = await postRequest(url + 'category/delete', {
+    name: cred.name,
+    password: cred.password,
+    id: id,
+  });
+
+  return getIfValid(response);
 }

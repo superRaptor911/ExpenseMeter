@@ -55,6 +55,16 @@ let store = set => ({
       categories: state.categories.filter(item => item._id != id),
     }));
   },
+  editCategory: newItem => {
+    set(state => ({
+      categories: state.categories.map(item => {
+        if (newItem._id === item._id) {
+          item = newItem;
+        }
+        return item;
+      }),
+    }));
+  },
 });
 
 let uiStore = set => ({
