@@ -8,7 +8,7 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +44 App.jsx
+badd +33 App.jsx
 badd +55 store.js
 badd +40 pages/Login.jsx
 badd +7 Routes.js
@@ -30,28 +30,29 @@ badd +1 components/categories/AddCategory.jsx
 badd +59 components/Header.jsx
 badd +17 components/SideDrawer.jsx
 badd +30 components/transactions/EditTrans.jsx
-badd +43 pages/Summary.jsx
+badd +70 pages/Summary.jsx
 badd +2 components/summary/DailySummary.jsx
 badd +1 components/summary/helper.js
 badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
 badd +13 components/transactions/helper.js
-badd +82 components/summaryGraphs/SummaryBarGraph.jsx
-badd +8 components/summaryGraphs/BarGraphMod.jsx
+badd +67 components/summaryGraphs/SummaryBarGraph.jsx
+badd +46 components/summaryGraphs/BarGraphMod.jsx
 badd +13 components/categories/EditCategory.jsx
-badd +26 components/summaryGraphs/SummaryGraphController.jsx
+badd +37 components/summaryGraphs/SummaryGraphController.jsx
+badd +75 components/summaryGraphs/CategoryGraph.jsx
 argglobal
 %argdel
-edit components/summaryGraphs/SummaryBarGraph.jsx
+edit pages/Summary.jsx
 argglobal
-balt pages/Summary.jsx
-let s:l = 68 - ((29 * winheight(0) + 22) / 45)
+balt App.jsx
+let s:l = 72 - ((38 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 68
-normal! 014|
+keepjumps 72
+normal! 019|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

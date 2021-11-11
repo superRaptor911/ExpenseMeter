@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {useEffect, useState} from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import {useStore} from '../store';
@@ -11,7 +11,10 @@ import {
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
 import MonthlySummary from '../components/summary/MonthlySummary';
-import SummaryGraphController from '../components/summaryGraphs/SummaryGraphController';
+
+const SummaryGraphController = React.lazy(() =>
+  import('../components/summaryGraphs/SummaryGraphController'),
+);
 
 const Panel = ({tabIndex, id, children}) => {
   return <>{tabIndex === id && children}</>;
@@ -64,7 +67,9 @@ const Summary = () => {
       </Panel>
 
       <Panel tabIndex={tabIndex} id={1}>
-        <SummaryGraphController transactions={transactions} />
+        <Suspense fallback={<h1>Loading</h1>}>
+          <SummaryGraphController transactions={transactions} />
+        </Suspense>
       </Panel>
     </div>
   );
