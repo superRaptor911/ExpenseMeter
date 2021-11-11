@@ -25,32 +25,33 @@ badd +1 components/transactions/ThisWeek.jsx
 badd +11 components/transactions/ThisMonth.jsx
 badd +17 pages/Categories.jsx
 badd +21 components/categories/ListCategories.jsx
-badd +63 components/categories/CategoryItem.jsx
+badd +7 components/categories/CategoryItem.jsx
 badd +1 components/categories/AddCategory.jsx
 badd +59 components/Header.jsx
 badd +17 components/SideDrawer.jsx
 badd +30 components/transactions/EditTrans.jsx
-badd +14 pages/Summary.jsx
+badd +43 pages/Summary.jsx
 badd +2 components/summary/DailySummary.jsx
 badd +1 components/summary/helper.js
 badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
 badd +13 components/transactions/helper.js
-badd +25 components/summaryGraphs/SummaryBarGraph.jsx
+badd +82 components/summaryGraphs/SummaryBarGraph.jsx
 badd +8 components/summaryGraphs/BarGraphMod.jsx
 badd +13 components/categories/EditCategory.jsx
+badd +26 components/summaryGraphs/SummaryGraphController.jsx
 argglobal
 %argdel
-edit components/categories/CategoryItem.jsx
+edit components/summaryGraphs/SummaryBarGraph.jsx
 argglobal
-balt api/api.js
-let s:l = 7 - ((0 * winheight(0) + 22) / 45)
+balt pages/Summary.jsx
+let s:l = 68 - ((29 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 7
-normal! 040|
+keepjumps 68
+normal! 014|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

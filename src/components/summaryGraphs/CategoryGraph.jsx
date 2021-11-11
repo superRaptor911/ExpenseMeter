@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import {Paper} from '@mui/material';
-import {format} from 'date-fns';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Bar,
   BarChart,
@@ -11,19 +10,17 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+import {useStore} from '../../store';
 import BarGraphMod from './BarGraphMod';
 
-const groupTransData = (transactions, graphType) => {
+const groupTransData = (transactions, categoryMap) => {
   let data = [];
   let grp = {};
   transactions &&
     transactions.forEach(item => {
-      let name = '';
-      if (graphType === 'DAILY') {
-        name = format(new Date(item.date), 'dd-MM-yyyy');
-      } else {
-        name = format(new Date(item.date), 'MMM-yyyy');
-      }
+      let name = categoryMap[item.category].title;
+      name = name ? name : 'other';
+
       if (grp[name]) {
         grp[name].push(item);
       } else {
@@ -49,11 +46,27 @@ const groupTransData = (transactions, graphType) => {
   return data;
 };
 
-const SummaryBarGraph = ({transactions}) => {
-  const [graphType, setGraphType] = useState('DAILY');
+const CategoryGraph = ({transactions}) => {
   const [number, setNumber] = useState(7);
+  const [categoryMap, setCategoryMap] = useState(null);
+  const [data, setData] = useState([]);
+  const categories = useStore(state => state.categories);
 
-  const data = groupTransData(transactions, graphType);
+  useEffect(() => {
+    if (categories) {
+      const map = {};
+      categories.forEach(item => {
+        map[item._id] = item;
+      });
+      setCategoryMap(map);
+    }
+  }, [categories]);
+
+  useEffect(() => {
+    if (transactions && categoryMap) {
+      setData(groupTransData(transactions, categoryMap));
+    }
+  }, [transactions, categoryMap]);
 
   return (
     <div>
@@ -69,14 +82,9 @@ const SummaryBarGraph = ({transactions}) => {
         </BarChart>
       </Paper>
 
-      <BarGraphMod
-        graphType={graphType}
-        setGraphType={setGraphType}
-        number={number}
-        setNumber={setNumber}
-      />
+      <BarGraphMod number={number} setNumber={setNumber} />
     </div>
   );
 };
 
-export default SummaryBarGraph;
+export default CategoryGraph;

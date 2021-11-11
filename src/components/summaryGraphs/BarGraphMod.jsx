@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import {InputLabel, MenuItem, Paper, Select, TextField} from '@mui/material';
-import React from 'react';
+import React, {Fragment} from 'react';
 
 const BarGraphMod = ({graphType, setGraphType, number, setNumber}) => {
   return (
@@ -13,19 +13,23 @@ const BarGraphMod = ({graphType, setGraphType, number, setNumber}) => {
         alignItems: 'center',
         padding: 2,
       }}>
-      <InputLabel id="demo-simple-select-label2">Graph Type</InputLabel>
-      <Select
-        labelId="demo-simple-select-label2"
-        id="demo-simple-select2"
-        value={graphType}
-        label="Category"
-        sx={{width: 200, marginLeft: 1}}
-        onChange={event => {
-          setGraphType(event.target.value);
-        }}>
-        <MenuItem value={'DAILY'}>Daily</MenuItem>
-        <MenuItem value={'MONTHLY'}>Monthly</MenuItem>
-      </Select>
+      {graphType && (
+        <Fragment>
+          <InputLabel id="demo-simple-select-label2">Graph Type</InputLabel>
+          <Select
+            labelId="demo-simple-select-label2"
+            id="demo-simple-select2"
+            value={graphType}
+            label="Category"
+            sx={{width: 200, marginLeft: 1}}
+            onChange={event => {
+              setGraphType(event.target.value);
+            }}>
+            <MenuItem value={'DAILY'}>Daily</MenuItem>
+            <MenuItem value={'MONTHLY'}>Monthly</MenuItem>
+          </Select>
+        </Fragment>
+      )}
 
       <TextField
         id="standard-basic"

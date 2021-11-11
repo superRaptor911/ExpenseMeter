@@ -11,7 +11,7 @@ import {
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
 import MonthlySummary from '../components/summary/MonthlySummary';
-import SummaryBarGraph from '../components/summaryGraphs/SummaryBarGraph';
+import SummaryGraphController from '../components/summaryGraphs/SummaryGraphController';
 
 const Panel = ({tabIndex, id, children}) => {
   return <>{tabIndex === id && children}</>;
@@ -40,7 +40,7 @@ const Summary = () => {
 
   return (
     <div>
-      <div>
+      <div style={{marginTop: 10, marginBottom: 20}}>
         <Tabs
           centered
           value={tabIndex}
@@ -64,7 +64,7 @@ const Summary = () => {
       </Panel>
 
       <Panel tabIndex={tabIndex} id={1}>
-        <SummaryBarGraph transactions={transactions} />
+        <SummaryGraphController transactions={transactions} />
       </Panel>
     </div>
   );
