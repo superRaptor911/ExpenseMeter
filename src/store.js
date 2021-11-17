@@ -10,12 +10,9 @@ let store = set => ({
   setCred: cred => set({credential: cred}),
 
   transactions: null,
-  loadTransactions: async cred => {
-    if (cred) {
-      const data = await listTransctions(cred.name, cred.password);
-      return set({transactions: data});
-    }
-    return set({transactions: null});
+  loadTransactions: async () => {
+    const data = await listTransctions();
+    return set({transactions: data});
   },
   addTransaction: item => {
     set(state => ({
@@ -39,11 +36,9 @@ let store = set => ({
   },
 
   categories: null,
-  loadCategories: async cred => {
-    if (cred) {
-      const data = await listCategories(cred);
-      set({categories: data});
-    }
+  loadCategories: async () => {
+    const data = await listCategories();
+    set({categories: data});
   },
   addCategory: item => {
     set(state => ({

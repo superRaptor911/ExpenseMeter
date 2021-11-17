@@ -16,7 +16,7 @@ const Panel = ({tabIndex, id, children}) => {
 const Transactions = () => {
   const transactions = useStore(state => state.transactions);
   const loadTransactions = useStore(state => state.loadTransactions);
-  const cred = useStore(state => state.credential);
+  const loadCategories = useStore(state => state.loadCategories);
 
   const [tabIndex, setTabIndex] = useState(0);
   const handleChange = (_event, newVal) => {
@@ -24,8 +24,9 @@ const Transactions = () => {
   };
 
   useEffect(() => {
-    loadTransactions(cred);
-  }, [cred]);
+    loadTransactions();
+    loadCategories();
+  }, []);
 
   return (
     <div>

@@ -11,7 +11,6 @@ import {addCategories} from '../../api/api';
 
 const AddCategory = () => {
   const [showModal, setShowModal] = useState(false);
-  const cred = useStore(state => state.credential);
   const storeAddCategory = useStore(state => state.addCategory);
 
   const titleRef = useRef();
@@ -34,7 +33,6 @@ const AddCategory = () => {
     const monthlyLimit = monthlyLimitRef.current.value;
 
     const result = await addCategories(
-      cred,
       title,
       color,
       description,

@@ -18,13 +18,13 @@ import {getCategoryColor, getCategoryTitle} from './helper';
 
 const TransItem = ({transaction}) => {
   const {title, transType, amount, note, category, date, _id} = transaction;
-  const cred = useStore(state => state.credential);
   const storeDeleteTrans = useStore(state => state.deleteTransaction);
   const categories = useStore(state => state.categories);
   const [showEditMenu, setShowEditMenu] = useState(false);
+  console.log('date ', date);
 
   const handleDelete = async () => {
-    const result = await deleteTransaction(cred, _id);
+    const result = await deleteTransaction(_id);
     if (result) {
       console.log('deleted ', _id);
       storeDeleteTrans(_id);

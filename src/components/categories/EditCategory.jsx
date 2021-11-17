@@ -9,7 +9,6 @@ import {useStore} from '../../store';
 import {editCategory} from '../../api/api';
 
 const EditCategory = ({setShowModal, oldCategory}) => {
-  const cred = useStore(state => state.credential);
   const storeEditCategory = useStore(state => state.editCategory);
 
   const [title, setTitle] = useState();
@@ -34,7 +33,6 @@ const EditCategory = ({setShowModal, oldCategory}) => {
 
   const handleSubmit = async () => {
     const result = await editCategory(
-      cred,
       oldCategory._id,
       title,
       color,

@@ -1,3 +1,4 @@
+import {useStore} from '../store';
 import {postRequest} from './request';
 
 const url = 'http://localhost:8080/';
@@ -25,17 +26,17 @@ export async function loginUser(username, password) {
   return response;
 }
 
-export async function listTransctions(username, password) {
+export async function listTransctions() {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'transactions/', {
-    name: username,
-    password: password,
+    name: cred.name,
+    password: cred.password,
   });
 
   return getData(response);
 }
 
 export async function addTransaction(
-  cred,
   title,
   transType,
   note,
@@ -43,6 +44,7 @@ export async function addTransaction(
   amount,
   category,
 ) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'transactions/add', {
     name: cred.name,
     password: cred.password,
@@ -57,7 +59,8 @@ export async function addTransaction(
   return getData(response);
 }
 
-export async function deleteTransaction(cred, id) {
+export async function deleteTransaction(id) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'transactions/delete', {
     name: cred.name,
     password: cred.password,
@@ -68,7 +71,6 @@ export async function deleteTransaction(cred, id) {
 }
 
 export async function editTransaction(
-  cred,
   id,
   title,
   transType,
@@ -77,6 +79,7 @@ export async function editTransaction(
   amount,
   category,
 ) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'transactions/edit', {
     name: cred.name,
     password: cred.password,
@@ -92,7 +95,8 @@ export async function editTransaction(
   return getData(response);
 }
 
-export async function listCategories(cred) {
+export async function listCategories() {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'category/', {
     name: cred.name,
     password: cred.password,
@@ -102,7 +106,6 @@ export async function listCategories(cred) {
 }
 
 export async function addCategories(
-  cred,
   title,
   color,
   description,
@@ -110,6 +113,7 @@ export async function addCategories(
   weeklyLimit,
   monthlyLimit,
 ) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'category/add', {
     name: cred.name,
     password: cred.password,
@@ -125,7 +129,6 @@ export async function addCategories(
 }
 
 export async function editCategory(
-  cred,
   id,
   title,
   color,
@@ -134,6 +137,7 @@ export async function editCategory(
   weeklyLimit,
   monthlyLimit,
 ) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'category/edit', {
     name: cred.name,
     password: cred.password,
@@ -149,7 +153,8 @@ export async function editCategory(
   return getData(response);
 }
 
-export async function deleteCategory(cred, id) {
+export async function deleteCategory(id) {
+  const cred = useStore.getState().credential;
   const response = await postRequest(url + 'category/delete', {
     name: cred.name,
     password: cred.password,

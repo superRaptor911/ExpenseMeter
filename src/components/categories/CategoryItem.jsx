@@ -17,12 +17,11 @@ const CategoryItem = ({item}) => {
   const {title, color, description, dailyLimit, weeklyLimit, monthlyLimit} =
     item;
 
-  const cred = useStore(state => state.credential);
   const storeDeleteCategory = useStore(state => state.deleteCategory);
   const [showEditMenu, setShowEditMenu] = useState(false);
 
   const handleDelete = async () => {
-    const result = await deleteCategory(cred, item._id);
+    const result = await deleteCategory(item._id);
     if (result) {
       storeDeleteCategory(item._id);
     }

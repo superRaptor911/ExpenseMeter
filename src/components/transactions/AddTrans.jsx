@@ -21,7 +21,6 @@ const AddTrans = () => {
   const [category, setCategory] = useState('');
   const [date, setDate] = useState(new Date());
 
-  const cred = useStore(state => state.credential);
   const categories = useStore(state => state.categories);
   const storeAddTrans = useStore(state => state.addTransaction);
 
@@ -39,7 +38,6 @@ const AddTrans = () => {
     const amount = amountRef.current.value;
 
     const result = await addTransaction(
-      cred,
       title,
       transType,
       note,

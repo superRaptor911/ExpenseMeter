@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Modal from '@mui/material/Modal';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
@@ -22,7 +22,6 @@ const EditTrans = ({id, setShowEditMenu}) => {
   const [note, setNote] = useState();
   const [amount, setAmount] = useState();
 
-  const cred = useStore(state => state.credential);
   const categories = useStore(state => state.categories);
   const transactions = useStore(state => state.transactions);
   const storeEditTrans = useStore(state => state.editTransaction);
@@ -49,7 +48,6 @@ const EditTrans = ({id, setShowEditMenu}) => {
 
   const handleSubmit = async () => {
     const result = await editTransaction(
-      cred,
       id,
       title,
       transType,
