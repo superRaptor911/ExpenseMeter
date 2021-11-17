@@ -5,6 +5,7 @@ import SideDrawer from './components/SideDrawer';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import {ROUTES} from './Routes';
 import {useStore} from './store';
 
@@ -26,6 +27,10 @@ function App() {
 
           <Route exact path={ROUTES.login}>
             <Login />
+          </Route>
+
+          <Route exact path={ROUTES.register}>
+            <Register />
           </Route>
 
           {cred && (

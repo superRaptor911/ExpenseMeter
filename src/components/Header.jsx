@@ -35,6 +35,10 @@ const Header = () => {
     history.push(ROUTES.login);
   };
 
+  const onTitleClick = () => {
+    history.push(cred ? ROUTES.dashboard : ROUTES.home);
+  };
+
   return (
     <Box sx={{flexGrow: 1}}>
       <AppBar position="static">
@@ -53,7 +57,8 @@ const Header = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{flexGrow: 1, textTransform: 'capitalize'}}>
+            onClick={onTitleClick}
+            sx={{flexGrow: 1, textTransform: 'capitalize', cursor: 'pointer'}}>
             {cred
               ? getLocationName(location && location.pathname)
               : 'Expense Meter'}

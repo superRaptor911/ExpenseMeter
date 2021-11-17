@@ -8,10 +8,11 @@ import {Link, useHistory} from 'react-router-dom';
 import {ROUTES} from '../Routes';
 import Alert from '@mui/material/Alert';
 
-const Login = () => {
+const Register = () => {
   const history = useHistory();
   const nameRef = useRef('');
   const passwordRef = useRef();
+  const passwordRef2 = useRef();
 
   const setCred = useStore(state => state.setCred);
 
@@ -46,6 +47,12 @@ const Login = () => {
         <div style={{marginTop: 40}} />
         <Input placeholder="Password" inputRef={passwordRef} type="password" />
         <div style={{marginTop: 40}} />
+        <Input
+          placeholder="Repeat Password"
+          inputRef={passwordRef}
+          type="password"
+        />
+        <div style={{marginTop: 40}} />
         <Button variant="contained" onClick={handleSubmit}>
           Submit
         </Button>
@@ -54,12 +61,13 @@ const Login = () => {
             {error}
           </Alert>
         )}
-        <Link to={ROUTES.register} style={{textAlign: 'right', marginTop: 15}}>
-          Create Account?
+
+        <Link to={ROUTES.login} style={{textAlign: 'right', marginTop: 15}}>
+          Login?
         </Link>
       </Paper>
     </div>
   );
 };
 
-export default Login;
+export default Register;
