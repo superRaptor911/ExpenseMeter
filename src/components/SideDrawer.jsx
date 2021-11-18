@@ -9,12 +9,16 @@ import React from 'react';
 import {useUiStore} from '../store';
 import {ROUTES} from '../Routes';
 import {useHistory} from 'react-router-dom';
+import CategoryIcon from '@mui/icons-material/Category';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 
 const Items = [
-  {name: 'Dashboard', path: ROUTES.dashboard},
-  {name: 'Transactions', path: ROUTES.transactions},
-  {name: 'Categories', path: ROUTES.categories},
-  {name: 'Summary', path: ROUTES.summary},
+  {name: 'Dashboard', path: ROUTES.dashboard, icon: DashboardIcon},
+  {name: 'Transactions', path: ROUTES.transactions, icon: LocalAtmIcon},
+  {name: 'Categories', path: ROUTES.categories, icon: CategoryIcon},
+  {name: 'Summary', path: ROUTES.summary, icon: SummarizeIcon},
 ];
 
 const SideDrawer = () => {
@@ -23,15 +27,18 @@ const SideDrawer = () => {
   const history = useHistory();
 
   return (
-    <Drawer open={showSideBar} onClose={toggleSideBar} sx={{minWidth: 300}}>
+    <Drawer open={showSideBar} onClose={toggleSideBar}>
       <List>
         {Items.map((item, id) => (
-          <ListItem key={id}>
+          <ListItem key={id} sx={{padding: 0}}>
             <ListItemButton
               onClick={() => {
                 history.push(item.path);
                 toggleSideBar();
               }}>
+              <ListItemIcon>
+                <item.icon />
+              </ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>

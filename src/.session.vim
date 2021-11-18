@@ -8,12 +8,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +33 App.jsx
-badd +1 store.js
+badd +56 App.jsx
+badd +32 store.js
 badd +57 pages/Login.jsx
 badd +4 Routes.js
 badd +6 pages/Home.jsx
-badd +31 api/api.js
+badd +19 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +25 pages/Transactions.jsx
 badd +30 components/transactions/TransItem.jsx
@@ -25,9 +25,9 @@ badd +1 components/transactions/ThisWeek.jsx
 badd +11 components/transactions/ThisMonth.jsx
 badd +8 pages/Categories.jsx
 badd +21 components/categories/ListCategories.jsx
-badd +28 components/categories/CategoryItem.jsx
+badd +79 components/categories/CategoryItem.jsx
 badd +36 components/categories/AddCategory.jsx
-badd +13 components/Header.jsx
+badd +44 components/Header.jsx
 badd +17 components/SideDrawer.jsx
 badd +4 components/transactions/EditTrans.jsx
 badd +54 pages/Summary.jsx
@@ -42,18 +42,19 @@ badd +46 components/summaryGraphs/BarGraphMod.jsx
 badd +36 components/categories/EditCategory.jsx
 badd +37 components/summaryGraphs/SummaryGraphController.jsx
 badd +75 components/summaryGraphs/CategoryGraph.jsx
-badd +5 pages/Register.jsx
+badd +32 pages/Register.jsx
+badd +6 components/Loading.jsx
 argglobal
 %argdel
-edit pages/Register.jsx
+edit components/Loading.jsx
 argglobal
-balt api/api.js
-let s:l = 38 - ((37 * winheight(0) + 22) / 45)
+balt App.jsx
+let s:l = 5 - ((4 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 38
-normal! 037|
+keepjumps 5
+normal! 069|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
