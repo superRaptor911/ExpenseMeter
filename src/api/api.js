@@ -26,6 +26,15 @@ export async function loginUser(username, password) {
   return response;
 }
 
+export async function registerUser(username, password) {
+  const response = await postRequest(url + 'users/register', {
+    name: username,
+    password: password,
+  });
+
+  return response;
+}
+
 export async function listTransctions() {
   const cred = useStore.getState().credential;
   const response = await postRequest(url + 'transactions/', {
