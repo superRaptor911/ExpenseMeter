@@ -2,6 +2,7 @@
 
 ## Features
 
+* Accounts 
 * Add, edit, delete Transactions
 * Add, edit, delete Categories
 * View Daily, weekly, Monthly summary
@@ -12,5 +13,6 @@
 * Budget Allocation
 * Comparison chart
 * Landing Page
-* Auth System
+* Dashboard
+* Mobile Support
 
