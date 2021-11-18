@@ -2,6 +2,7 @@ import React, {Suspense, lazy, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {loginUser} from './api/api';
 import Header from './components/Header';
+import Loading from './components/Loading';
 import SideDrawer from './components/SideDrawer';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
@@ -52,7 +53,7 @@ function App() {
                 <Dashboard />
               </Route>
 
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Loading />}>
                 <Route
                   exact
                   path={ROUTES.transactions}

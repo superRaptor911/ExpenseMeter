@@ -14,8 +14,15 @@ import {useStore} from '../../store';
 import {deleteCategory} from '../../api/api';
 
 const CategoryItem = ({item}) => {
-  const {title, color, description, dailyLimit, weeklyLimit, monthlyLimit} =
-    item;
+  const {
+    username,
+    title,
+    color,
+    description,
+    dailyLimit,
+    weeklyLimit,
+    monthlyLimit,
+  } = item;
 
   const storeDeleteCategory = useStore(state => state.deleteCategory);
   const [showEditMenu, setShowEditMenu] = useState(false);
@@ -48,13 +55,19 @@ const CategoryItem = ({item}) => {
           <div
             style={{display: 'flex', width: 'max-content', marginLeft: 'auto'}}>
             <IconButton
+              disabled={!username}
               onClick={() => {
                 setShowEditMenu(true);
               }}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={handleDelete}>
-              <DeleteIcon sx={{color: 'error.light', marginLeft: 1}} />
+            <IconButton onClick={handleDelete} disabled={!username}>
+              <DeleteIcon
+                sx={{
+                  color: !username ? '#BDBDBD' : 'error.light',
+                  marginLeft: 1,
+                }}
+              />
             </IconButton>
           </div>
         </div>
