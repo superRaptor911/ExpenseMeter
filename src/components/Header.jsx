@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -5,10 +6,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import React from 'react';
+import React, {useState} from 'react';
 import {useHistory, useLocation} from 'react-router-dom';
 import {ROUTES} from '../Routes';
 import {useStore, useUiStore} from '../store';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const getLocationName = path => {
   for (const i in ROUTES) {
@@ -17,6 +20,42 @@ const getLocationName = path => {
     }
   }
   return '';
+};
+
+const UserMenu = ({handleLogout}) => {
+  const [menu, setMenu] = useState(false);
+  const showMenu = e => {
+    setMenu(e.currentTarget);
+  };
+  const hideMenu = () => {
+    setMenu(null);
+  };
+
+  return (
+    <div>
+      <Button
+        id="basic-button"
+        color="inherit"
+        aria-controls="basic-menu"
+        aria-haspopup="true"
+        aria-expanded={menu ? 'true' : undefined}
+        onClick={showMenu}>
+        {useStore.getState().credential.name}
+      </Button>
+      <Menu
+        id="basic-menu"
+        open={Boolean(menu)}
+        anchorEl={menu}
+        onClose={hideMenu}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}>
+        <MenuItem>Profile</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
 };
 
 const Header = () => {
@@ -64,9 +103,7 @@ const Header = () => {
               : 'Expense Meter'}
           </Typography>
           {cred ? (
-            <Button color="inherit" onClick={handleLogout}>
-              Logout
-            </Button>
+            <UserMenu handleLogout={handleLogout} />
           ) : (
             <Button color="inherit" onClick={onLoginClick}>
               Login

@@ -1,5 +1,6 @@
-import React, {Suspense, lazy} from 'react';
+import React, {Suspense, lazy, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {loginUser} from './api/api';
 import Header from './components/Header';
 import SideDrawer from './components/SideDrawer';
 import Dashboard from './pages/Dashboard';
@@ -15,6 +16,18 @@ const Summary = lazy(() => import('./pages/Summary'));
 
 function App() {
   const cred = useStore(state => state.credential);
+  const setCred = useStore(state => state.setCred);
+
+  useEffect(() => {
+    if (cred) {
+      loginUser(cred.name, cred.password).then(result => {
+        if (!(result && result.status)) {
+          setCred(null);
+        }
+      });
+    }
+  }, []);
+
   return (
     <div className="App">
       <Router>

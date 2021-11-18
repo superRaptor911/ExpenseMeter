@@ -33,7 +33,6 @@ const Register = () => {
 
     const result = await registerUser(username, password);
     if (result && result.status) {
-      console.log('GG!');
       setCred({name: username, password: password});
       history.push(ROUTES.dashboard);
     } else {
