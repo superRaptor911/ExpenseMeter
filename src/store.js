@@ -1,6 +1,11 @@
 import create from 'zustand';
 import {persist} from 'zustand/middleware';
 import {listCategories, listTransctions} from './api/api';
+import {
+  storeAddTransaction,
+  storeEditCategory,
+  storeEditTransaction,
+} from './storeHelper';
 
 let store = set => ({
   count: 0,
@@ -15,9 +20,7 @@ let store = set => ({
     return set({transactions: data});
   },
   addTransaction: item => {
-    set(state => ({
-      transactions: state.transactions ? [...state.transactions, item] : [item],
-    }));
+    storeAddTransaction(set, item);
   },
   deleteTransaction: id => {
     set(state => ({
@@ -25,14 +28,7 @@ let store = set => ({
     }));
   },
   editTransaction: newItem => {
-    set(state => ({
-      transactions: state.transactions.map(item => {
-        if (newItem._id === item._id) {
-          item = newItem;
-        }
-        return item;
-      }),
-    }));
+    storeEditTransaction(set, newItem);
   },
 
   categories: null,
@@ -51,14 +47,7 @@ let store = set => ({
     }));
   },
   editCategory: newItem => {
-    set(state => ({
-      categories: state.categories.map(item => {
-        if (newItem._id === item._id) {
-          item = newItem;
-        }
-        return item;
-      }),
-    }));
+    storeEditCategory(set, newItem);
   },
 });
 

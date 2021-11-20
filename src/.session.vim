@@ -28,7 +28,7 @@ badd +21 components/categories/ListCategories.jsx
 badd +79 components/categories/CategoryItem.jsx
 badd +36 components/categories/AddCategory.jsx
 badd +44 components/Header.jsx
-badd +17 components/SideDrawer.jsx
+badd +36 components/SideDrawer.jsx
 badd +4 components/transactions/EditTrans.jsx
 badd +54 pages/Summary.jsx
 badd +2 components/summary/DailySummary.jsx
@@ -43,18 +43,18 @@ badd +36 components/categories/EditCategory.jsx
 badd +37 components/summaryGraphs/SummaryGraphController.jsx
 badd +75 components/summaryGraphs/CategoryGraph.jsx
 badd +32 pages/Register.jsx
-badd +6 components/Loading.jsx
+badd +11 components/Loading.jsx
 argglobal
 %argdel
-edit components/Loading.jsx
+edit components/SideDrawer.jsx
 argglobal
-balt App.jsx
-let s:l = 5 - ((4 * winheight(0) + 22) / 45)
+balt components/Loading.jsx
+let s:l = 18 - ((15 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 5
-normal! 069|
+keepjumps 18
+normal! 044|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
