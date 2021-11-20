@@ -14,7 +14,7 @@ export const getDailyTransactions = transactions => {
   let dailyTransactions = [];
   transactions &&
     transactions.forEach(item => {
-      if (isToday(new Date(item.date))) {
+      if (isToday(item.date)) {
         dailyTransactions.push(item);
       }
     });
@@ -26,7 +26,7 @@ export const getWeeklyTransaction = transactions => {
   let weeklyTransactions = [];
   transactions &&
     transactions.forEach(item => {
-      if (isThisWeek(new Date(item.date))) {
+      if (isThisWeek(item.date)) {
         weeklyTransactions.push(item);
       }
     });
@@ -38,7 +38,7 @@ export const getMonthlyTransaction = transactions => {
   let monthlyTransactions = [];
   transactions &&
     transactions.forEach(item => {
-      if (isThisMonth(new Date(item.date))) {
+      if (isThisMonth(item.date)) {
         monthlyTransactions.push(item);
       }
     });

@@ -84,7 +84,7 @@ const TransItem = ({transaction}) => {
             }}>
             {getCategoryTitle(category, categories)}
           </Typography>
-          <Typography>{format(new Date(date), 'dd-MMM-yyyy')}</Typography>
+          <Typography>{format(date, 'dd-MMM-yyyy')}</Typography>
         </div>
 
         <Accordion sx={{marginTop: 1}}>

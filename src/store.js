@@ -5,19 +5,16 @@ import {
   storeAddTransaction,
   storeEditCategory,
   storeEditTransaction,
+  storeLoadTransactions,
 } from './storeHelper';
 
 let store = set => ({
-  count: 0,
-  addCount: () => set(state => ({count: state.count + 1})),
-
   credential: null,
   setCred: cred => set({credential: cred}),
 
   transactions: null,
-  loadTransactions: async () => {
-    const data = await listTransctions();
-    return set({transactions: data});
+  loadTransactions: () => {
+    storeLoadTransactions(set);
   },
   addTransaction: item => {
     storeAddTransaction(set, item);

@@ -20,9 +20,9 @@ const groupTransData = (transactions, graphType) => {
     transactions.forEach(item => {
       let name = '';
       if (graphType === 'DAILY') {
-        name = format(new Date(item.date), 'dd-MM-yyyy');
+        name = format(item.date, 'dd-MM-yyyy');
       } else {
-        name = format(new Date(item.date), 'MMM-yyyy');
+        name = format(item.date, 'MMM-yyyy');
       }
       if (grp[name]) {
         grp[name].push(item);

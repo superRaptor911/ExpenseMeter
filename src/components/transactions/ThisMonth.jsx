@@ -14,7 +14,7 @@ const ThisMonth = ({transactions}) => {
       }}>
       {transactions &&
         transactions
-          .filter(item => isThisMonth(new Date(item.date)))
+          .filter(item => isThisMonth(item.date))
           .map((item, id) => <TransItem key={id} transaction={item} />)}
     </Container>
   );

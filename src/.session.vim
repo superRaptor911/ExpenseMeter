@@ -9,52 +9,54 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +56 App.jsx
-badd +32 store.js
+badd +20 store.js
 badd +57 pages/Login.jsx
 badd +4 Routes.js
 badd +6 pages/Home.jsx
 badd +19 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +25 pages/Transactions.jsx
-badd +30 components/transactions/TransItem.jsx
+badd +87 components/transactions/TransItem.jsx
 badd +16 components/transactions/TransList.jsx
 badd +63 components/transactions/AddTrans.jsx
 badd +8 index.css
-badd +12 components/transactions/Today.jsx
-badd +1 components/transactions/ThisWeek.jsx
-badd +11 components/transactions/ThisMonth.jsx
+badd +19 components/transactions/Today.jsx
+badd +17 components/transactions/ThisWeek.jsx
+badd +17 components/transactions/ThisMonth.jsx
 badd +8 pages/Categories.jsx
 badd +21 components/categories/ListCategories.jsx
 badd +79 components/categories/CategoryItem.jsx
 badd +36 components/categories/AddCategory.jsx
 badd +44 components/Header.jsx
-badd +36 components/SideDrawer.jsx
-badd +4 components/transactions/EditTrans.jsx
+badd +37 components/SideDrawer.jsx
+badd +62 components/transactions/EditTrans.jsx
 badd +54 pages/Summary.jsx
 badd +2 components/summary/DailySummary.jsx
-badd +1 components/summary/helper.js
+badd +64 components/summary/helper.js
 badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
-badd +11 components/transactions/helper.js
-badd +67 components/summaryGraphs/SummaryBarGraph.jsx
-badd +46 components/summaryGraphs/BarGraphMod.jsx
+badd +14 components/transactions/helper.js
+badd +28 components/summaryGraphs/SummaryBarGraph.jsx
+badd +1 components/summaryGraphs/BarGraphMod.jsx
 badd +36 components/categories/EditCategory.jsx
 badd +37 components/summaryGraphs/SummaryGraphController.jsx
-badd +75 components/summaryGraphs/CategoryGraph.jsx
+badd +48 components/summaryGraphs/CategoryGraph.jsx
 badd +32 pages/Register.jsx
 badd +11 components/Loading.jsx
+badd +1 storeHelper.js
+badd +29 components/summaryGraphs/CategoryGraphMod.jsx
 argglobal
 %argdel
-edit components/SideDrawer.jsx
+edit components/summaryGraphs/CategoryGraphMod.jsx
 argglobal
-balt components/Loading.jsx
-let s:l = 18 - ((15 * winheight(0) + 22) / 45)
+balt storeHelper.js
+let s:l = 29 - ((24 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 18
-normal! 044|
+keepjumps 29
+normal! 048|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

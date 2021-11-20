@@ -14,7 +14,7 @@ const ThisWeek = ({transactions}) => {
       }}>
       {transactions &&
         transactions
-          .filter(item => isThisWeek(new Date(item.date)))
+          .filter(item => isThisWeek(item.date))
           .map((item, id) => <TransItem key={id} transaction={item} />)}
     </Container>
   );

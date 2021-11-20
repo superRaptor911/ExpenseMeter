@@ -82,7 +82,7 @@ const CategoryGraph = ({transactions}) => {
         </BarChart>
       </Paper>
 
-      <BarGraphMod number={number} setNumber={setNumber} />
+      {/* <BarGraphMod number={number} setNumber={setNumber} /> */}
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Today = ({transactions}) => {
       }}>
       {transactions &&
         transactions
-          .filter(item => isToday(new Date(item.date)))
+          .filter(item => isToday(item.date))
           .map((item, id) => <TransItem key={id} transaction={item} />)}
     </Container>
   );

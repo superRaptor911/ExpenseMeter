@@ -24,8 +24,9 @@ const BarGraphMod = ({graphType, setGraphType, number, setNumber}) => {
           onChange={event => {
             setGraphType(event.target.value);
           }}>
-          <MenuItem value={'DAILY'}>Daily</MenuItem>
-          <MenuItem value={'MONTHLY'}>Monthly</MenuItem>
+          <MenuItem value={'DAILY'}>Today</MenuItem>
+          <MenuItem value={'MONTHLY'}>This Week</MenuItem>
+          <MenuItem value={'MONTHLY'}>This Month</MenuItem>
         </Select>
       </Fragment>
 
