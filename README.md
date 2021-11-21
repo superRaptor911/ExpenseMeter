@@ -10,9 +10,10 @@
 
 ### Todo 
 
-* Budget Allocation
-* Comparison chart
 * Landing Page
 * Dashboard
+* Budget Allocation
+* Comparison chart
+* Export & Import of Data
 * Mobile Support
 
