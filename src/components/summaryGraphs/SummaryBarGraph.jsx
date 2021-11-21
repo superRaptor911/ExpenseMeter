@@ -13,7 +13,7 @@ import {
 } from 'recharts';
 import BarGraphMod from './BarGraphMod';
 
-const groupTransData = (transactions, graphType) => {
+const groupTransData = (transactions, graphType, number) => {
   let data = [];
   let grp = {};
   transactions &&
@@ -46,14 +46,14 @@ const groupTransData = (transactions, graphType) => {
 
     data.push({name: i, expense: expense, income: income});
   }
-  return data;
+  return data.slice(0, number);
 };
 
 const SummaryBarGraph = ({transactions}) => {
   const [graphType, setGraphType] = useState('DAILY');
-  const [number, setNumber] = useState(7);
+  const [number, setNumber] = useState(15);
 
-  const data = groupTransData(transactions, graphType);
+  const data = groupTransData(transactions, graphType, number);
 
   return (
     <div>

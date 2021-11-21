@@ -53,6 +53,24 @@ let uiStore = set => ({
   toggleSideBar: () => set(state => ({showSideBar: !state.showSideBar})),
 });
 
-store = persist(store);
+store = persist(store, {
+  // ...
+  onRehydrateStorage: state => {
+    // optional
+    return (state, error) => {
+      if (error) {
+        console.log('an error happened during hydration', error);
+      } else {
+        if (state.transactions) {
+          state.transactions = state.transactions.map(item => {
+            item.date = new Date(item.date);
+            return item;
+          });
+        }
+        console.log('hydration finished');
+      }
+    };
+  },
+});
 export const useStore = create(store);
 export const useUiStore = create(uiStore);

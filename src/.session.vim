@@ -9,14 +9,14 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 set shortmess=aoO
 badd +56 App.jsx
-badd +20 store.js
+badd +61 store.js
 badd +57 pages/Login.jsx
 badd +4 Routes.js
 badd +6 pages/Home.jsx
 badd +19 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +25 pages/Transactions.jsx
-badd +87 components/transactions/TransItem.jsx
+badd +66 components/transactions/TransItem.jsx
 badd +16 components/transactions/TransList.jsx
 badd +63 components/transactions/AddTrans.jsx
 badd +8 index.css
@@ -37,26 +37,26 @@ badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
 badd +14 components/transactions/helper.js
-badd +28 components/summaryGraphs/SummaryBarGraph.jsx
+badd +54 components/summaryGraphs/SummaryBarGraph.jsx
 badd +1 components/summaryGraphs/BarGraphMod.jsx
 badd +36 components/categories/EditCategory.jsx
 badd +37 components/summaryGraphs/SummaryGraphController.jsx
 badd +48 components/summaryGraphs/CategoryGraph.jsx
 badd +32 pages/Register.jsx
 badd +11 components/Loading.jsx
-badd +1 storeHelper.js
-badd +29 components/summaryGraphs/CategoryGraphMod.jsx
+badd +10 storeHelper.js
+badd +41 components/summaryGraphs/CategoryGraphMod.jsx
 argglobal
 %argdel
-edit components/summaryGraphs/CategoryGraphMod.jsx
+edit components/summaryGraphs/SummaryBarGraph.jsx
 argglobal
-balt storeHelper.js
-let s:l = 29 - ((24 * winheight(0) + 22) / 45)
+balt components/transactions/TransItem.jsx
+let s:l = 70 - ((32 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 29
-normal! 048|
+keepjumps 70
+normal! 014|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

@@ -21,7 +21,6 @@ const TransItem = ({transaction}) => {
   const storeDeleteTrans = useStore(state => state.deleteTransaction);
   const categories = useStore(state => state.categories);
   const [showEditMenu, setShowEditMenu] = useState(false);
-  console.log('date ', date);
 
   const handleDelete = async () => {
     const result = await deleteTransaction(_id);
