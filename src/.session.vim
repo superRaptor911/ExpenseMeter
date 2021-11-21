@@ -37,7 +37,7 @@ badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
 badd +14 components/transactions/helper.js
-badd +54 components/summaryGraphs/SummaryBarGraph.jsx
+badd +72 components/summaryGraphs/SummaryBarGraph.jsx
 badd +1 components/summaryGraphs/BarGraphMod.jsx
 badd +36 components/categories/EditCategory.jsx
 badd +37 components/summaryGraphs/SummaryGraphController.jsx
@@ -48,15 +48,15 @@ badd +10 storeHelper.js
 badd +41 components/summaryGraphs/CategoryGraphMod.jsx
 argglobal
 %argdel
-edit components/summaryGraphs/SummaryBarGraph.jsx
+edit components/summaryGraphs/BarGraphMod.jsx
 argglobal
-balt components/transactions/TransItem.jsx
-let s:l = 70 - ((32 * winheight(0) + 22) / 45)
+balt components/summaryGraphs/SummaryBarGraph.jsx
+let s:l = 5 - ((4 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 70
-normal! 014|
+keepjumps 5
+normal! 07|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

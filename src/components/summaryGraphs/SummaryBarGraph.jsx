@@ -21,6 +21,8 @@ const groupTransData = (transactions, graphType, number) => {
       let name = '';
       if (graphType === 'DAILY') {
         name = format(item.date, 'dd-MM-yyyy');
+      } else if (graphType === 'WEEKLY') {
+        name = format(item.date, 'wo-yyyy');
       } else {
         name = format(item.date, 'MMM-yyyy');
       }

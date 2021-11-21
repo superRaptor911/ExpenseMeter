@@ -14,7 +14,7 @@ const BarGraphMod = ({graphType, setGraphType, number, setNumber}) => {
         padding: 2,
       }}>
       <Fragment>
-        <InputLabel id="demo-simple-select-label2">Graph Type</InputLabel>
+        <InputLabel id="demo-simple-select-label2">Type</InputLabel>
         <Select
           labelId="demo-simple-select-label2"
           id="demo-simple-select2"
@@ -25,13 +25,14 @@ const BarGraphMod = ({graphType, setGraphType, number, setNumber}) => {
             setGraphType(event.target.value);
           }}>
           <MenuItem value={'DAILY'}>Daily</MenuItem>
+          <MenuItem value={'WEEKLY'}>Weekly</MenuItem>
           <MenuItem value={'MONTHLY'}>Monthly</MenuItem>
         </Select>
       </Fragment>
 
       <TextField
         id="standard-basic"
-        label="Number"
+        label="Bar Count"
         type="number"
         variant="standard"
         required
