@@ -1,7 +1,8 @@
 import {useStore} from '../store';
 import {postRequest} from './request';
 
-const url = 'http://localhost:8080/';
+// const url = 'http://localhost:8080/';
+const url = 'https://expense-mtr.herokuapp.com/';
 // const url = process.env.REACT_APP_PRO_MODE;
 
 function getData(response) {
