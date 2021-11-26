@@ -52,7 +52,13 @@ const AddTrans = () => {
   };
 
   return (
-    <div style={{margin: 'auto', width: 'max-content', marginTop: 20}}>
+    <div
+      style={{
+        margin: 'auto',
+        width: 'max-content',
+        marginTop: 20,
+        maxWidth: '95vw',
+      }}>
       <Fab color="primary" aria-label="add" onClick={toggleModal}>
         <AddIcon />
       </Fab>
@@ -63,7 +69,9 @@ const AddTrans = () => {
         aria-describedby="modal-modal-description">
         <Paper
           sx={{
-            width: 600,
+            maxWidth: '95vw',
+            minWidth: '40vw',
+            width: 'max-content',
             height: 550,
             margin: 'auto',
             marginTop: '10%',
@@ -127,6 +135,7 @@ const AddTrans = () => {
 
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DateTimePicker
+              inputFormat="dd-MM-yyyy"
               renderInput={props => <TextField {...props} />}
               label="Date Time"
               value={date}
