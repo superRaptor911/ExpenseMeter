@@ -2,6 +2,7 @@ import {useStore} from '../store';
 import {postRequest} from './request';
 
 const url = 'http://localhost:8080/';
+// const url = process.env.REACT_APP_PRO_MODE;
 
 function getData(response) {
   if (response && response.status) {
