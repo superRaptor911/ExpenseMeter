@@ -12,7 +12,7 @@ badd +56 App.jsx
 badd +61 store.js
 badd +57 pages/Login.jsx
 badd +4 Routes.js
-badd +23 pages/Home.jsx
+badd +9 pages/Home.jsx
 badd +19 api/api.js
 badd +21 pages/Dashboard.jsx
 badd +25 pages/Transactions.jsx
@@ -30,9 +30,9 @@ badd +36 components/categories/AddCategory.jsx
 badd +44 components/Header.jsx
 badd +37 components/SideDrawer.jsx
 badd +62 components/transactions/EditTrans.jsx
-badd +54 pages/Summary.jsx
-badd +2 components/summary/DailySummary.jsx
-badd +64 components/summary/helper.js
+badd +58 pages/Summary.jsx
+badd +17 components/summary/DailySummary.jsx
+badd +1 components/summary/helper.js
 badd +41 components/summary/WeeklySummary.jsx
 badd +1 components/summary/MonthlySummary.jsx
 badd +9 components/summary/SumTransItem.jsx
@@ -48,15 +48,15 @@ badd +10 storeHelper.js
 badd +41 components/summaryGraphs/CategoryGraphMod.jsx
 argglobal
 %argdel
-edit pages/Home.jsx
+edit components/summary/DailySummary.jsx
 argglobal
-balt Routes.js
-let s:l = 18 - ((17 * winheight(0) + 22) / 45)
+balt components/summary/helper.js
+let s:l = 16 - ((15 * winheight(0) + 22) / 45)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 18
-normal! 0
+keepjumps 16
+normal! 05|
 lcd ~/program/react/vite/expenzMeter/src
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0&& getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

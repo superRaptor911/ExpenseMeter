@@ -4,7 +4,11 @@ export const getTotalSpent = transactions => {
   let spent = 0;
   transactions &&
     transactions.forEach(item => {
-      spent += parseFloat(item.amount);
+      if (item.transType === 'EXPENSE') {
+        spent += parseFloat(item.amount);
+      } else {
+        spent -= parseFloat(item.amount);
+      }
     });
 
   return spent;
