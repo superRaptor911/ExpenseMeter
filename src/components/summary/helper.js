@@ -1,4 +1,4 @@
-import {isThisMonth, isThisWeek, isToday} from 'date-fns';
+import {isThisMonth, isThisWeek, isToday, isYesterday} from 'date-fns';
 
 export const getTotalSpent = transactions => {
   let spent = 0;
@@ -19,6 +19,18 @@ export const getDailyTransactions = transactions => {
   transactions &&
     transactions.forEach(item => {
       if (isToday(item.date)) {
+        dailyTransactions.push(item);
+      }
+    });
+
+  return dailyTransactions;
+};
+
+export const getYesterdaysTransaction = transactions => {
+  let dailyTransactions = [];
+  transactions &&
+    transactions.forEach(item => {
+      if (isYesterday(item.date)) {
         dailyTransactions.push(item);
       }
     });

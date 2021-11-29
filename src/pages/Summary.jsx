@@ -7,10 +7,12 @@ import {
   getDailyTransactions,
   getMonthlyTransaction,
   getWeeklyTransaction,
+  getYesterdaysTransaction,
 } from '../components/summary/helper';
 import DailySummary from '../components/summary/DailySummary';
 import WeeklySummary from '../components/summary/WeeklySummary';
 import MonthlySummary from '../components/summary/MonthlySummary';
+import YesterdaysSummary from '../components/summary/YesterdaysSummary';
 
 const SummaryGraphController = React.lazy(() =>
   import('../components/summaryGraphs/SummaryGraphController'),
@@ -28,12 +30,14 @@ const Summary = () => {
   const [dailyTrans, setDailyTrans] = useState();
   const [weeklyTrans, setWeeklyTrans] = useState();
   const [monthlyTrans, setMonthlyTrans] = useState();
+  const [yesterdaysTransactions, setYesterdaysTransactions] = useState();
 
   useEffect(() => {
     if (transactions) {
       setDailyTrans(getDailyTransactions(transactions));
       setWeeklyTrans(getWeeklyTransaction(transactions));
       setMonthlyTrans(getMonthlyTransaction(transactions));
+      setYesterdaysTransactions(getYesterdaysTransaction(transactions));
     }
   }, [transactions]);
 
@@ -54,23 +58,33 @@ const Summary = () => {
           <Tab label="Comparison" />
         </Tabs>
       </div>
-      <Panel tabIndex={tabIndex} id={0}>
-        <DailySummary dailyTransactions={dailyTrans} categories={categories} />
-        <WeeklySummary
-          weeklyTransactions={weeklyTrans}
-          categories={categories}
-        />
-        <MonthlySummary
-          monthlyTransactions={monthlyTrans}
-          categories={categories}
-        />
-      </Panel>
 
-      <Panel tabIndex={tabIndex} id={1}>
-        <Suspense fallback={<h1>Loading</h1>}>
-          <SummaryGraphController transactions={transactions} />
-        </Suspense>
-      </Panel>
+      <div style={{overflowY: 'auto', height: 'calc(100vh - 150px)'}}>
+        <Panel tabIndex={tabIndex} id={0}>
+          <DailySummary
+            dailyTransactions={dailyTrans}
+            categories={categories}
+          />
+          <YesterdaysSummary
+            yesterdaysTransactions={yesterdaysTransactions}
+            categories={categories}
+          />
+          <WeeklySummary
+            weeklyTransactions={weeklyTrans}
+            categories={categories}
+          />
+          <MonthlySummary
+            monthlyTransactions={monthlyTrans}
+            categories={categories}
+          />
+        </Panel>
+
+        <Panel tabIndex={tabIndex} id={1}>
+          <Suspense fallback={<h1>Loading</h1>}>
+            <SummaryGraphController transactions={transactions} />
+          </Suspense>
+        </Panel>
+      </div>
     </div>
   );
 };
