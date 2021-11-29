@@ -6,7 +6,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SumTransItem from './SumTransItem';
+import SummaryTransactionList from './SummaryTransactionList';
 
 const DailySummary = ({dailyTransactions, categories}) => {
   const transCount = dailyTransactions ? dailyTransactions.length : 0;
@@ -42,14 +42,10 @@ const DailySummary = ({dailyTransactions, categories}) => {
           <Typography>Transactions:</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {dailyTransactions &&
-            dailyTransactions.map(item => (
-              <SumTransItem
-                trans={item}
-                key={item._id}
-                categories={categories}
-              />
-            ))}
+          <SummaryTransactionList
+            transactions={dailyTransactions}
+            categories={categories}
+          />
         </AccordionDetails>
       </Accordion>
     </Paper>

@@ -6,7 +6,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import SumTransItem from './SumTransItem';
+import SummaryTransactionList from './SummaryTransactionList';
 
 const MonthlySummary = ({monthlyTransactions, categories}) => {
   const transCount = monthlyTransactions ? monthlyTransactions.length : 0;
@@ -42,14 +42,10 @@ const MonthlySummary = ({monthlyTransactions, categories}) => {
           <Typography>Transactions:</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {monthlyTransactions &&
-            monthlyTransactions.map(item => (
-              <SumTransItem
-                trans={item}
-                key={item._id}
-                categories={categories}
-              />
-            ))}
+          <SummaryTransactionList
+            categories={categories}
+            transactions={monthlyTransactions}
+          />
         </AccordionDetails>
       </Accordion>
     </Paper>
